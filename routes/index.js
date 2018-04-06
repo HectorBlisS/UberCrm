@@ -15,7 +15,7 @@ router.post('/add', appController.findOrCreate);
 //testing
 router.get('/ten', appController.getTen);
 //quering
-//router.get('/search', appController.search);
+router.get('/search', appController.search);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

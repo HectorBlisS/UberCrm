@@ -46,10 +46,17 @@ exports.getAll = (req,res)=>{
 }
 
 //searching
-// exports.search = (req,res)=>{
-// 	var query = Object.keys(req.)
-// 	App.find(req.query)
-// }
+exports.search = (req,res)=>{
+	console.log(req.query);
+	App.find(req.query)
+	.then(r=>{
+		App.find(req.query).count()
+		.then(num=>res.json({quantity:num,data:r}))
+	})
+	
+	.catch(e=>res.send(e));
+	//res.json(req.query)
+}
 
 //testing
 

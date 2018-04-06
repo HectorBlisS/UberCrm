@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+	<title>bliss</title>
+
+	
+
+</head>
+<body>
+<section id="root">
+	<h1>Uber stuff</h1>
+	<img style="display:none" ref="loading" src="https://media.giphy.com/media/y1ZBcOGOOtlpC/200.gif" alt="loading">
+		
+	<form v-on:submit="getFile">
+		
+		<input name="file" type="file">
+		<input type="submit">
+
+	</form>
+
+
+
+
+
+	
+</section>
+<script src="/js/papaparse.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="/js/parser.js"></script>
+</body>
+</html>

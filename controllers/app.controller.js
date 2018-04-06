@@ -19,7 +19,7 @@ exports.addController = (req,res)=>{
 }
 
 exports.findOrCreate = (req,res)=>{
-	for(obj of req.body.chunk){
+	for(let obj of req.body.chunk){
 		App.findOne({token:obj.token}, (err, user)=>{
 			//console.log(err, user);
 			if(err) console.log(err);
@@ -30,6 +30,11 @@ exports.findOrCreate = (req,res)=>{
 		})
 	}
 	res.send("done");
+	// App.count({token:{$exists:true}}, (err,r)=>{
+	// 	console.log(r);
+	// 	res.send("done");
+	// })
+	
 	
 };
 

@@ -9,6 +9,8 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+const cors = require("cors");
+app.use(cors());
 
 const mongoose = require("mongoose");
 mongoose.connect("mongodb://bliss:bliss@ds147668.mlab.com:47668/fixter_eshop_feb_2018", ()=>console.log("Conectado a la BD"))

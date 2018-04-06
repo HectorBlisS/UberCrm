@@ -44,3 +44,11 @@ exports.getAll = (req,res)=>{
 		.then(r=>res.json(r))
 		.catch(e=>res.send(e));
 }
+
+//testing
+
+exports.getTen = (req,res)=>{
+	App.find().limit(20)
+		.then(r=>res.json(r))
+		.catch(e=>res.send(e));
+}

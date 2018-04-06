@@ -12,6 +12,8 @@ function exists(req,res,next){
 
 router.get('/all', appController.getAll);
 router.post('/add', appController.findOrCreate);
+//testing
+router.get('/ten', appController.getTen);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

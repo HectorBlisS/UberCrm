@@ -58,6 +58,27 @@ exports.search = (req,res)=>{
 	//res.json(req.query)
 }
 
+exports.filter = (req,res)=>{
+	const field = req.query.field;
+	const score = req.query.score;
+	console.log(req.query);
+	const query = {$or:[
+				{name:{$regex: field, $options: 'i'}},
+				{surName:{$regex: field, $options: 'i'}},
+				{lastName: {$regex: field, $options: 'i'}},
+				{why:{$regex: field, $options: 'i'}}
+				],
+				score:score}
+
+				
+
+
+
+	App.find(query)
+	.then(r=>res.json(r))
+	.catch(e=>res.send(e));
+};
+
 //testing
 
 exports.getTen = (req,res)=>{

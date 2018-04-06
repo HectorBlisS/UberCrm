@@ -16,6 +16,7 @@ router.post('/add', appController.findOrCreate);
 router.get('/ten', appController.getTen);
 //quering
 router.get('/search', appController.search);
+router.get('/filter', appController.filter);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

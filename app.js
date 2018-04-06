@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+const interface = require('./routes/interface');
 
 var app = express();
 const cors = require("cors");
@@ -29,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/admin', interface);
 app.use('/uber', (req,res)=>{
 	res.sendFile(path.join(__dirname, '/public', 'uber.html'));
 })

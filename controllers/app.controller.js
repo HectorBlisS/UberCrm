@@ -45,6 +45,12 @@ exports.getAll = (req,res)=>{
 		.catch(e=>res.send(e));
 }
 
+//searching
+// exports.search = (req,res)=>{
+// 	var query = Object.keys(req.)
+// 	App.find(req.query)
+// }
+
 //testing
 
 exports.getTen = (req,res)=>{

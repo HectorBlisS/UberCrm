@@ -10,6 +10,7 @@ function exists(req,res,next){
 	.catch(e=>next());
 }
 
+router.get('/paginated', appController.paginated);
 router.get('/all', appController.getAll);
 router.post('/add', appController.findOrCreate);
 //testing

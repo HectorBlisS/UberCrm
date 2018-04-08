@@ -45,6 +45,17 @@ exports.getAll = (req,res)=>{
 		.catch(e=>res.send(e));
 }
 
+//paginated
+exports.paginated = (req,res)=>{
+	const options = {limit:100};
+	if(req.query.page){
+		options["page"] = Number(req.query.page);
+	}
+	App.paginate({}, options)
+		.then(r=>res.json(r))
+		.catch(e=>res.send(e));
+}
+
 //searching
 exports.search = (req,res)=>{
 	console.log(req.query);
@@ -68,7 +79,8 @@ exports.filter = (req,res)=>{
 				{lastName: {$regex: field, $options: 'i'}},
 				{why:{$regex: field, $options: 'i'}}
 				],
-				score:score}
+				score:score
+			}
 
 				
 

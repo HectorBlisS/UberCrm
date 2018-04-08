@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const mongoosePaginate = require('mongoose-paginate');
 
 const appSchema = new Schema({
 	name:{
@@ -27,5 +28,7 @@ const appSchema = new Schema({
 	comment: String
 
 });
+
+appSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model("App", appSchema);

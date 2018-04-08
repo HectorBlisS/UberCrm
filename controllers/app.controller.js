@@ -47,11 +47,35 @@ exports.getAll = (req,res)=>{
 
 //paginated
 exports.paginated = (req,res)=>{
-	const options = {limit:100};
+	const options = {};
+	let query = {};
 	if(req.query.page){
 		options["page"] = Number(req.query.page);
+		delete req.query.page;
 	}
-	App.paginate({}, options)
+	if(req.query.limit){
+		options["limit"] = Number(req.query.limit);
+		delete req.query.limit;
+	}
+	
+	//the query:
+	if(req.query.field){
+		//just to ensure the query works
+		//delete options.limit;
+		//delete options.page;
+		//just to ensure the query works
+		const field = req.query.field;
+		query = {$or:[
+					{name:{$regex: field, $options: 'i'}},
+					{surName:{$regex: field, $options: 'i'}},
+					{lastName: {$regex: field, $options: 'i'}},
+					{why:{$regex: field, $options: 'i'}}
+				]
+			}
+	}
+
+
+	App.paginate(query, options)
 		.then(r=>res.json(r))
 		.catch(e=>res.send(e));
 }

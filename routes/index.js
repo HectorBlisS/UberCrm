@@ -13,6 +13,7 @@ function exists(req,res,next){
 router.get('/paginated', appController.paginated);
 router.get('/all', appController.getAll);
 router.post('/add', appController.findOrCreate);
+router.get('/apps/:id', appController.detail);
 //testing
 router.get('/ten', appController.getTen);
 //quering

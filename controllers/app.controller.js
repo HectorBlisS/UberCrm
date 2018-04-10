@@ -45,6 +45,13 @@ exports.getAll = (req,res)=>{
 		.catch(e=>res.send(e));
 }
 
+//detail
+exports.detail = (req,res)=>{
+	App.findById(req.params.id)
+		.then(r=>res.json(r))
+		.catch(e=>res.send(e));
+}
+
 //paginated
 exports.paginated = (req,res)=>{
 	const options = {};

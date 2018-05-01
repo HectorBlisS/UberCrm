@@ -132,6 +132,19 @@ exports.getTen = (req,res)=>{
 
 exports.finalCandidatesFiltered = (req, res) => {
 
+
+	// Paginate options by BlisS
+	let options = {};
+
+	if(req.query.page){
+		options["page"] = Number(req.query.page);
+		delete req.query.page;
+	}
+	if(req.query.limit){
+		options["limit"] = Number(req.query.limit);
+		delete req.query.limit;
+	}
+
 	let query = {
 		$and: [
 			{technicalCategory: {$in: ['1','2']}}
@@ -146,6 +159,7 @@ exports.finalCandidatesFiltered = (req, res) => {
 		 	con todos los query parameters que lleguen
 		**/
 		Object.keys(req.query).forEach(key=>{
+			console.log(Object.keys(req.query))
 			let q = {};
 			q[key] = {
 				$regex: req.query[key],
@@ -158,7 +172,7 @@ exports.finalCandidatesFiltered = (req, res) => {
 
 		});
 		
-		App.find(query)
+		App.paginate(query , options)
 		.then(r=>res.json(r))
 		.catch(e=>res.send(e));
 
@@ -170,8 +184,25 @@ exports.finalCandidatesFiltered = (req, res) => {
 	 * Si no llegan query parameters, regresamos todos los documentos
 	 * que coincidan con technicalCategory en 1 o 2
 	**/
-	App.find(query)
+	App.paginate(query, options)
 		.then(r=>res.json(r))
 		.catch(e=>res.send(e));
+
+}
+
+
+
+exports.editFinalist = (req, res) => {
+
+	if(req.params.id) {
+
+		App.update({_id:req.params.id}, req.body)
+			.then(r => {
+				res.status(200);
+				res.send("Actualizado");
+			})
+			.catch(e=>res.send(e));
+
+	}
 
 }

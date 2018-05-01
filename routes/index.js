@@ -23,6 +23,8 @@ router.get('/filter', appController.filter);
 
 router.get('/finalinterview', appController.finalCandidatesFiltered);
 
+router.patch('/finalinterview/:id', appController.editFinalist)
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });

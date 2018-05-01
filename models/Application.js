@@ -25,7 +25,9 @@ const appSchema = new Schema({
 	score: String,
 	evaluator: String,
 	scoreN: String,
-	comment: String
+	comment: String,
+	interview_score: Number,
+	interviewer_comment: String
 
 });
 

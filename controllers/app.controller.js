@@ -132,6 +132,8 @@ exports.getTen = (req,res)=>{
 
 exports.finalCandidatesFiltered = (req, res) => {
 
+
+	// Paginate options by BlisS
 	let options = {};
 
 	if(req.query.page){
@@ -185,5 +187,22 @@ exports.finalCandidatesFiltered = (req, res) => {
 	App.paginate(query, options)
 		.then(r=>res.json(r))
 		.catch(e=>res.send(e));
+
+}
+
+
+
+exports.editFinalist = (req, res) => {
+
+	if(req.params.id) {
+
+		App.update({_id:req.params.id}, req.body)
+			.then(r => {
+				res.status(200);
+				res.send("Actualizado");
+			})
+			.catch(e=>res.send(e));
+
+	}
 
 }

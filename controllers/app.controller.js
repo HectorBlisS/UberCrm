@@ -37,6 +37,17 @@ exports.findOrCreate = (req,res)=>{
 	
 	
 };
+exports.updateGrades = (req, res)=>{
+	for(let obj of req.body.chunk){
+         App.update({email:obj.email}, {$set:obj}, (err, user) => {
+             if(err) console.log(err);
+     	})
+     }
+
+	console.log(req.body.chunk);
+	console.log('y ahora???')
+
+}
 
 
 exports.getAll = (req,res)=>{

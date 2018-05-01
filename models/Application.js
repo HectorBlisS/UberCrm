@@ -25,7 +25,12 @@ const appSchema = new Schema({
 	score: String,
 	evaluator: String,
 	scoreN: String,
-	comment: String
+	comment: String,
+	interview:String,
+	webScore:String,
+	uxScore:String,
+	technicalCategory:String,
+    whyTo:String
 
 });
 

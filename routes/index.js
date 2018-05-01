@@ -11,14 +11,23 @@ function exists(req,res,next){
 }
 
 router.get('/paginated', appController.paginated);
+
 router.get('/all', appController.getAll);
 router.post('/add', appController.findOrCreate);
 router.get('/apps/:id', appController.detail);
 //testing
 router.get('/ten', appController.getTen);
+
+
 //quering
+router.post('/update', appController.updateGrades);
+
+
 router.get('/search', appController.search);
 router.get('/filter', appController.filter);
+
+router.get('/finalCandidates', appController.getFinallCandidates);
+router.get('/filteredFinalCandidates', appController.getFinallCandidatesFiltered);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

@@ -37,6 +37,17 @@ exports.findOrCreate = (req,res)=>{
 	
 	
 };
+exports.updateGrades = (req, res)=>{
+	for(let obj of req.body.chunk){
+         App.update({email:obj.email}, {$set:obj}, (err, user) => {
+             if(err) console.log(err);
+     	})
+     }
+
+	console.log(req.body.chunk);
+	console.log('y ahora???')
+
+}
 
 
 exports.getAll = (req,res)=>{
@@ -128,4 +139,16 @@ exports.getTen = (req,res)=>{
 	App.find().limit(20)
 		.then(r=>res.json(r))
 		.catch(e=>res.send(e));
+}
+
+exports.getFinallCandidates = (req, res) => {
+
+	App.find({technicalCategory:{$in:['1', '2']}}).limit(20)
+		.then(r=>res.json(r))
+		.catch(e=>res.send(e))
+}
+
+exports.getFinallCandidatesFiltered = (req, res) => {
+	res.send('Lol')
+
 }

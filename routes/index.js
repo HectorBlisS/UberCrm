@@ -20,6 +20,9 @@ router.get('/ten', appController.getTen);
 router.get('/search', appController.search);
 router.get('/filter', appController.filter);
 
+
+router.get('/finalinterview', appController.finalCandidatesFiltered);
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });

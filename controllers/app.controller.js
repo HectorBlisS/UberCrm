@@ -129,3 +129,49 @@ exports.getTen = (req,res)=>{
 		.then(r=>res.json(r))
 		.catch(e=>res.send(e));
 }
+
+exports.finalCandidatesFiltered = (req, res) => {
+
+	let query = {
+		$and: [
+			{technicalCategory: {$in: ['1','2']}}
+		]
+	}
+
+	// Checamos si hay query parameters
+	if( Object.keys(req.query).length > 0 ){
+
+		/** 
+		 	Si existen creamos los objetos para el query de mongo
+		 	con todos los query parameters que lleguen
+		**/
+		Object.keys(req.query).forEach(key=>{
+			let q = {};
+			q[key] = {
+				$regex: req.query[key],
+				$options: 'i'
+			};
+
+			query['$or'] = [];
+
+			query['$or'].push(q);
+
+		});
+		
+		App.find(query)
+		.then(r=>res.json(r))
+		.catch(e=>res.send(e));
+
+		return;
+
+	}
+
+	/**
+	 * Si no llegan query parameters, regresamos todos los documentos
+	 * que coincidan con technicalCategory en 1 o 2
+	**/
+	App.find(query)
+		.then(r=>res.json(r))
+		.catch(e=>res.send(e));
+
+}

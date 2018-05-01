@@ -130,6 +130,15 @@ exports.getTen = (req,res)=>{
 		.catch(e=>res.send(e));
 }
 
+
+
+
+
+
+/**** 
+ * Codigo de David
+****/
+
 exports.finalCandidatesFiltered = (req, res) => {
 
 
@@ -158,15 +167,15 @@ exports.finalCandidatesFiltered = (req, res) => {
 		 	Si existen creamos los objetos para el query de mongo
 		 	con todos los query parameters que lleguen
 		**/
+
+		query['$or'] = [];
+
 		Object.keys(req.query).forEach(key=>{
-			console.log(Object.keys(req.query))
 			let q = {};
 			q[key] = {
 				$regex: req.query[key],
 				$options: 'i'
 			};
-
-			query['$or'] = [];
 
 			query['$or'].push(q);
 
@@ -206,3 +215,7 @@ exports.editFinalist = (req, res) => {
 	}
 
 }
+
+/**** 
+ * Codigo de David
+****/

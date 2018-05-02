@@ -11,19 +11,32 @@ function exists(req,res,next){
 }
 
 router.get('/paginated', appController.paginated);
+
 router.get('/all', appController.getAll);
 router.post('/add', appController.findOrCreate);
 router.get('/apps/:id', appController.detail);
 //testing
 router.get('/ten', appController.getTen);
+
+
 //quering
+router.post('/update', appController.updateGrades);
+
+
 router.get('/search', appController.search);
 router.get('/filter', appController.filter);
 
+/*** 
+ * RUTAS DE DAVID
+ ***/
 
-router.get('/finalinterview', appController.finalCandidatesFiltered);
+	router.get('/finalinterview', appController.finalCandidatesFiltered);
+	router.patch('/finalinterview/:id', appController.editFinalist)
 
-router.patch('/finalinterview/:id', appController.editFinalist)
+/*** 
+ * RUTAS DE DAVID
+ ***/
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

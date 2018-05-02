@@ -14,6 +14,7 @@ const cors = require("cors");
 app.use(cors());
 
 const mongoose = require("mongoose");
+//mongoose.connect("mongodb://bliss:bliss@ds147668.mlab.com:47668/fixter_eshop_feb_2018", ()=>console.log("Conectado a la BD"))
 mongoose.connect("mongodb://oswaldinho:oswaldinho@ds263759.mlab.com:63759/ironhack-test", ()=>console.log("Conectado a la BD"))
 
 // view engine setup

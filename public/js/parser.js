@@ -77,7 +77,6 @@ var parse = new Vue({
             if (e.target[0].files.length < 1) return;
             loading.style.display = "block";
             var file = e.target[0].files[0];
-            console.log('lolllll', file)
 
             Papa.parse(file, {
                 //header:true,
@@ -90,7 +89,7 @@ var parse = new Vue({
                 },
                 complete: function(){
                     loading.style.display = "none";
-                    console.log("asi te queria agarrar: ",puerca)
+                    
                     updateGrades();
                 },
                 error: function(err,file,input,reason){
@@ -149,6 +148,9 @@ function show(arr){
 
 function showUpd(arr){
 	const obj={
+		name: undefined,
+		lastName: undefined,
+		surName: undefined,
 		email:undefined,
 		whyTo:undefined,
 		webScore:undefined,
@@ -158,17 +160,20 @@ function showUpd(arr){
 	let count = 0;
 
     arr[0].forEach((field, i)=>{
-			if(i==3 || i==16 || i==17 ||i==18){
+			if(i==0 ||i==1 ||i==2 ||i==3 || i==16 || i==17 ||i==18){
                 obj[keys[count]] = field;
                 count++
 			}
 	});
-    //push al chunk
-    chunk.push(obj);
+	//push al chunk
+	chunk.push(obj);
 
 }
 function showUxUpdate(arr){
     const obj={
+		name: undefined,
+		lastName: undefined,
+		surName: undefined,
         email:undefined,
         whyTo:undefined,
         uxScore:undefined,
@@ -178,13 +183,13 @@ function showUxUpdate(arr){
     let count = 0;
 
     arr[0].forEach((field, i)=>{
-        if(i==3 || i==14 || i==15 ||i==19){
+        if(i==0 ||i==1 ||i==2 || i==3 || i==14 || i==15 ||i==19){
         obj[keys[count]] = field;
         count++
     }
 });
     //push al chunk
-    chunk.push(obj);
+	chunk.push(obj);
 
 }
 

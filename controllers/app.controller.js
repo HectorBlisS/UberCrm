@@ -37,15 +37,20 @@ exports.findOrCreate = (req,res)=>{
 	
 	
 };
-exports.updateGrades = (req, res)=>{
+exports.updateGrades = async (req, res)=>{
+
+	
+
 	for(let obj of req.body.chunk){
-         App.update({email:obj.email}, {$set:obj}, (err, user) => {
-             if(err) console.log(err);
+		console.log(obj);
+         App.update({email:obj.email}, {$set:obj}, {upsert:true,multi:true},(err, user) => {
+			 if(err) console.log(err);
      	})
      }
 
-	console.log(req.body.chunk);
-	console.log('y ahora???')
+	console.log(req.body.chunk.length);
+	res.status(200);
+	res.send("updated");
 
 }
 

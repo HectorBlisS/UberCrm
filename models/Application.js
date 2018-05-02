@@ -31,7 +31,8 @@ const appSchema = new Schema({
 	webScore:String,
 	uxScore:String,
 	technicalCategory:String,
-    whyTo:String
+	whyTo:String,
+	personal_interviewer: String
 
 });
 

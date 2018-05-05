@@ -8,7 +8,7 @@
 <a href="/admin/users" class="uk-button uk-button-secondary">
 	Usuarios
 </a>
-<a class="uk-button uk-button-primary" href="#modal-center" uk-toggle>Crear Curso</a>
+<a class="uk-button uk-button-primary" href="#modal-center" uk-toggle>Crear Usuario</a>
 
 
 <div class="uk-overflow-auto">
@@ -17,33 +17,31 @@
             <tr>
                 <th class="uk-table-shrink">Select</th>
                 <th class="uk-table-shrink">Img</th>
-                <th class="uk-table-expand">Clase</th>
-                <th class="uk-width-small">Tipo</th>
-                <th class="uk-table-shrink uk-text-nowrap">Fecha</th>
-                <th class="uk-table-small">Activo</th>
+                <th class="uk-table-expand">Nombre</th>
+                <th class="uk-width-small">E-mail</th>
+                <th class="uk-table-shrink uk-text-nowrap">Curso seleccionado</th>
+                <th class="uk-table-shrink uk-text-nowrap">Estatus</th>
             </tr>
         </thead>
         <tbody id="tBody">
-            {{#each courses}}
+            {{#each users}}
             <tr>
                 <td><input class="uk-checkbox" type="checkbox"></td>
                 <td><img class="uk-preserve-width uk-border-circle" src="https://www.ironhack.com/assets/shared/logo.svg" width="40" alt=""></td>
                 <td class="uk-table-truncate">
-                    <a class="uk-link-reset" href="/admin/courses/{{this._id}}">{{this.kind}}</a>
+                    <a class="uk-link-reset" href="/admin/users/{{this._id}}">
+                        {{this.app.name}} {{this.app.surName}} {{this.app.lastName}}
+                    </a>
                 </td>
-                <td class="uk-text-truncate">{{this.type}}</td>
-                <td uk-tooltip="{{{fromNow this.date}}}" class="uk-text-primary uk-text-nowrap">{{{date this.date}}}</td>
-                {{#if this.active}}
-                <td class="uk-text-truncate uk-text-success"> {{this.active}} </td>
-                {{else}}
-                <td class="uk-text-truncate uk-text-secondary"> {{this.active}} </td>
-                {{/if}}
+                <td class="uk-table-truncate">{{this.email}}</td>
+                <td class="uk-text-primary uk-text-nowrap">{{this.selectedCourse.kind}} - {{date this.selectedCourse.date}}</td>
+                <td class="uk-text-danger uk-text-nowrap">{{this.status}}</td>
             </tr>
             {{else}}
             <tr>
                 <td>
                     <h2>
-                        Aún no se han publicado cursos
+                        Aún no hay usuarios
                     </h2>
                 </td>
             </tr>
@@ -69,9 +67,9 @@
  <form action="/admin/courses" method="post" >
     <fieldset class="uk-fieldset">
 
-        <legend class="uk-legend">Nuevo Curso</legend>
+        <legend class="uk-legend">Nuevo Usuario</legend>
 
-        <div class="uk-margin">
+        {{!-- <div class="uk-margin">
             <h4>Fecha de inicio</h4>
              <input name="date" type="date" data-uk-datepicker="{format:'DD.MM.YYYY'}">
         </div>
@@ -90,10 +88,10 @@
                 <option value="Full-time">Full-time</option>
                 <option value="Part-time">Part-time</option>
             </select>
-        </div>
+        </div> --}}
 
     </fieldset>
-    <input value="Crear" type="submit" class="uk-button uk-button-danger">
+    {{!-- <input value="Crear" type="submit" class="uk-button uk-button-danger"> --}}
 </form>
 
 

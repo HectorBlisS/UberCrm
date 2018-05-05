@@ -3,9 +3,9 @@ const cloudinaryStorage = require('multer-storage-cloudinary');
 const multer = require('multer');
 
 cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_NAME,
-    api_key: process.env.CLOUDINARY_KEY,
-    api_secret: process.env.CLOUDINARY_SECRET
+    cloud_name: 'hectorbliss',
+    api_key: '436876978178491',
+    api_secret: 'cedihymo6v7QFGFpAywqIq26kvw'
 });
 
 var storage = cloudinaryStorage({
@@ -13,7 +13,7 @@ var storage = cloudinaryStorage({
   folder: 'payments',
   allowedFormats: ['jpg', 'png'],
   filename: function (req, file, cb) {
-    cb(null, req.file.originalname);
+    cb(null, file.originalname);
   }
 });
 

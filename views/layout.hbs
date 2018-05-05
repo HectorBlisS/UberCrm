@@ -6,6 +6,33 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+
+    <nav class="uk-navbar-container uk-margin uk-navbar-transparent" uk-navbar>
+    <div class="uk-navbar-left">
+
+        <a class="uk-navbar-item uk-logo" href="#">
+          <img width="200" src="https://www.ironhack.com/assets/landing-pages/uber-initiative/header-logos.png" alt="">
+        </a>
+
+    </div>
+    <div class="uk-navbar-right">
+          <ul class="uk-navbar-nav">
+            {{#if currentUser}}
+            <li><p>{{currentUser.email}}</p></li>
+            <li class="uk-active"><a href="/auth/logout">Cerrar Sesión</a></li>
+            {{else}}
+            <li class="uk-active"><a href="/auth/login">Inicia Sesión</a></li>
+            {{/if}}
+            
+        </ul>
+    </div>
+    <div></div>
+</nav>
+
+
+
+
+
     {{{body}}}
 	
 	<div id="root">

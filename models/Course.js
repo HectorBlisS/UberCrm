@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const courseSchema = new Schema({
+	active:{
+		type:Boolean,
+		default:true
+	},
 	date:{
 		type:Date,
 		required:true

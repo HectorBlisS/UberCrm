@@ -1,0 +1,44 @@
+<section class="uk-container">
+
+<h2>Admin Panel</h2>
+
+<a href="/admin/courses" class="uk-button uk-button-secondary">
+	Cursos
+</a>
+<a href="/admin/users" class="uk-button uk-button-secondary">
+	Usuarios
+</a>
+<a class="uk-button uk-button-primary" href="/admin/users" uk-toggle>Cancelar</a>
+
+
+<div class="uk-overflow-auto">
+    <h2>Visualizar Pago</h2>
+    <h5>{{user.email}}</h5>
+    <div uk-lightbox>
+        <a class="uk-button uk-button-default" href="{{user.paymentPic}}">
+            <img width="100" src="{{user.paymentPic}}" alt="">
+        </a>
+    </div>
+</div>
+
+</section>
+
+
+
+
+
+
+<div id="modal-center" class="uk-flex-top" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+
+       
+
+ 
+
+
+
+
+    </div>
+</div>

@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const App = require('../models/Application');
 const User = require('../models/User');
-//course ?
+//mail
+const sendMail = require('../helpers/mailer');
 const passport = require('passport');
 
 //argonauti@yahoo.com
@@ -17,6 +18,7 @@ function isAuthenticated(req,res,next){
 }
 
 router.get('/logout', (req,res)=>{
+    delete req.app.locals.currentUser;
     req.logout();
     //res.redirect('/');
     res.redirect('/auth/login?error=Cerraste sesión con éxito');
@@ -32,6 +34,7 @@ router.post('/login', passport.authenticate('local', {
 }));
 
 router.get('/profile', isAuthenticated, (req,res, next)=>{
+    req.app.locals.currentUser = req.user;  
     User.findById(req.user._id)
     .populate('app')
     .populate('selectedCourse')
@@ -77,11 +80,13 @@ router.post('/confirm/:appId', (req,res,next)=>{
                 if(err.name === "UserExistsError") return res.render('auth/exist');
                 return res.send(err);
             }
-            console.log('intento');
             req.body.username = newUser.email;
             req.body.email = newUser.email;
             passport.authenticate('local')(req, res, function () {
-                console.log('logré')
+                //mail
+                sendMail(newUser.email, "Bienvenido!", "Felicidades!, haz comenzado el proceso para hacer valida tu beca UBER + Ironhack")
+                .then(r=>console.log("mail: ",r))
+                .catch(e=>console.log("email: ",e))
                 res.redirect('/auth/profile');
             });
             //next();

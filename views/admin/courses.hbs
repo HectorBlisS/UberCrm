@@ -1,0 +1,98 @@
+<section class="uk-container">
+
+<h2>Admin Panel</h2>
+
+<a href="/admin/courses" class="uk-button uk-button-secondary">
+	Cursos
+</a>
+<a href="/admin/users" class="uk-button uk-button-secondary">
+	Usuarios
+</a>
+<a class="uk-button uk-button-primary" href="#modal-center" uk-toggle>Crear Curso</a>
+
+
+<div class="uk-overflow-auto">
+    <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
+        <thead>
+            <tr>
+                <th class="uk-table-shrink">Select</th>
+                <th class="uk-table-shrink">Img</th>
+                <th class="uk-table-expand">Clase</th>
+                <th class="uk-width-small">Tipo</th>
+                <th class="uk-table-shrink uk-text-nowrap">Fecha</th>
+            </tr>
+        </thead>
+        <tbody id="tBody">
+            {{#each courses}}
+            <tr>
+                <td><input class="uk-checkbox" type="checkbox"></td>
+                <td><img class="uk-preserve-width uk-border-circle" src="https://www.ironhack.com/assets/shared/logo.svg" width="40" alt=""></td>
+                <td class="uk-table-truncate">
+                    <a class="uk-link-reset" href="/admin/courses/{{this._id}}">{{this.kind}}</a>
+                </td>
+                <td class="uk-text-truncate">{{this.type}}</td>
+                <td uk-tooltip="{{{fromNow this.date}}}" class="uk-text-primary uk-text-nowrap">{{{date this.date}}}</td>
+            </tr>
+            {{else}}
+            <tr>
+                <td>
+                    <h2>
+                        Aún no se han publicado cursos
+                    </h2>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+</section>
+
+
+
+
+
+
+<div id="modal-center" class="uk-flex-top" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+
+       
+
+ <form action="/admin/courses" method="post" >
+    <fieldset class="uk-fieldset">
+
+        <legend class="uk-legend">Nuevo Curso</legend>
+
+        <div class="uk-margin">
+            <h4>Fecha de inicio</h4>
+             <input name="date" type="date" data-uk-datepicker="{format:'DD.MM.YYYY'}">
+        </div>
+
+        <div class="uk-margin">
+            <h4>Curso</h4>
+            <select name="kind" class="uk-select">
+                <option value="Web Development">Web Dev</option>
+                <option value="UX/UI">UX/UI</option>
+            </select>
+        </div>
+        
+        <div class="uk-margin">
+            <h4>Tipo</h4>
+            <select name="type" class="uk-select">
+                <option value="Full-time">Full-time</option>
+                <option value="Part-time">Part-time</option>
+            </select>
+        </div>
+
+    </fieldset>
+    <input value="Crear" type="submit" class="uk-button uk-button-danger">
+</form>
+
+
+
+
+    </div>
+</div>
+

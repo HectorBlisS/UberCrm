@@ -4,14 +4,39 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+const session = require('express-session');
+const passport = require('./helpers/passport');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-const interface = require('./routes/interface');
+
+//helpers
+const moment = require('moment');
+moment.locale('es');
+const hbs = require('hbs');
+hbs.registerHelper('date', (content)=>moment(content).format("LL"));
+hbs.registerHelper('fromNow', (content)=>moment(content).fromNow());
+
+
+//helpers
+
+
+
+
 
 var app = express();
 const cors = require("cors");
 app.use(cors());
+
+//session
+app.use(session({
+  resave:false,
+  secret:"blisS",
+  saveUninitialized:true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 const mongoose = require("mongoose");
 //mongoose.connect("mongodb://bliss:bliss@ds147668.mlab.com:47668/fixter_eshop_feb_2018", ()=>console.log("Conectado a la BD"))
@@ -29,12 +54,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/users', users);
-app.use('/admin', interface);
+const auth = require('./routes/auth');
+const admin = require('./routes/admin');
+
+app.use('/auth', auth);
+app.use('/admin', admin);
 app.use('/uber', (req,res)=>{
 	res.sendFile(path.join(__dirname, '/public', 'uber.html'));
-})
+});
+app.use('/', users);
+app.use('/', index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

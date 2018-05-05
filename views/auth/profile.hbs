@@ -1,0 +1,160 @@
+<div class="uk-cover-container uk-height-medium">
+    <img src="https://cdn-images-1.medium.com/max/2000/1*6PAmNtyNDKSFRdCoyg8g5g.jpeg" alt="" uk-cover>
+</div>
+<section class="portada uk-container">
+
+
+    {{#if photoURL}}
+        <img id="profilePic" src="{{photoURL}}" alt="">
+    {{else}}
+        <img id="profilePic" src="https://cdn-images-1.medium.com/max/184/1*2GDcaeYIx_bQAZLxWM4PsQ@2x.png" alt="">
+    {{/if}}
+
+
+    <br>
+    <br>
+    <br>
+<h2 style="text-align:center">
+    Hola 
+    <span class="uk-margin-small-right" uk-icon="heart"></span>
+    {{app.name}} {{app.surName}}
+
+    {{#if admin}}
+    <a href="/admin" class="uk-button uk-button-secondary">
+	    Admin
+    </a>
+    {{/if}}
+
+</h2>
+<hr class="uk-divider-icon">
+</section>
+
+{{#if selectedCourse}}
+ 
+<div class="uk-section uk-section-secondary uk-light" href="#modal-overflow" uk-toggle>
+    <div class="uk-container">
+
+        <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
+            <div class="si-bootcamp">
+                <h3 class="uk-heading-line uk-text-center">
+                    <span>
+                        {{selectedCourse.kind}} * {{selectedCourse.type}}
+                    </span>    
+                </h3>
+                <h4 class="uk-heading-line uk-text-center">
+                    <span uk-tooltip="{{fromNow selectedCourse}}">
+                        {{date selectedCourse}}
+                    </span>    
+                </h4>
+                <h5 class="uk-heading-line uk-text-center">
+                    <span style="color:{{color}}">
+                        {{estado}}
+                    </span>    
+                </h5>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+{{!-- make modal --}}
+
+
+
+<div id="modal-overflow" uk-modal>
+    <div class="uk-modal-dialog">
+
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+
+        <div class="uk-modal-header">
+            <h2 class="uk-modal-title">¡Felicidades tu lugar está asignado!</h2>
+        </div>
+
+        <div class="uk-modal-body" uk-overflow-auto>
+
+            {{#if status}}
+
+            <h2>{{estado}}</h2>
+
+            {{else}}
+
+            <h3>Recuerda que solo tienes 5 días para reservarlo </h3>
+
+            <p>
+                Solo tienes que realizar un deposito por $9,000.MXN a la cuenta de Ironhack México en Santander.
+            </p>
+
+            <h5>
+                Datos de la cuenta...
+            </h5>
+
+            <p>
+                Tomar una foto de tu recibo de pago y subirlo aqui:
+            </p>
+            <form action="/reserva" method="post" enctype="multipart/form-data">
+                <input name="file" accept="image/*" class="uk-input-file" type="file">
+                <input class="uk-button uk-button-primary" type="submit">
+            </form>
+
+            <p>Nos comunicaremos contigo para confirmar tu lugar! =D</p>
+
+
+
+            {{/if}}
+
+
+        </div>
+
+        <div class="uk-modal-footer uk-text-right">
+            <button class="uk-button uk-button-secondary uk-modal-close" type="button">Cerrar</button>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+{{else}}
+
+<a href="/select">
+<div class="uk-section uk-section-secondary uk-light">
+    <div class="uk-container">
+
+        <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
+            <div class="no-bootcamp">
+                <h4>¡Ahora selecciona el Bootcamp y tu fecha!</h4>
+            </div>
+        </div>
+
+    </div>
+</div>
+</a>
+
+{{/if}}
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.42/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.42/js/uikit-icons.min.js"></script>
+
+<script>
+    var element = document.getElementById('modal-overflow');
+    UIkit.modal(element).show();
+</script>

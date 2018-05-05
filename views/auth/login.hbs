@@ -1,0 +1,11 @@
+<section class="uk-container uk-container-small">
+
+<h2>Inicia sesión</h2>
+<form validated action="/auth/login" method="post">
+    <input name="email" required class="uk-input" type="email" placeholder="Tu email"/>
+    <input required class="uk-input" type="password" name="password" placeholder="tu password" />
+    <input class="uk-button uk-button-secondary" type="submit" class="">
+</form>
+<h6 class="error">{{error}}</h6>
+
+</section>

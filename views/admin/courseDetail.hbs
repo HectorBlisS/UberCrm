@@ -1,0 +1,68 @@
+<section class="uk-container">
+
+<h2>Admin Panel</h2>
+
+<a href="/admin/courses" class="uk-button uk-button-secondary">
+	Cursos
+</a>
+<a href="/admin/users" class="uk-button uk-button-secondary">
+	Usuarios
+</a>
+<a class="uk-button uk-button-primary" href="/admin/courses" uk-toggle>Cancelar</a>
+
+
+<div class="uk-overflow-auto">
+
+<form action="/admin/courses/{{course._id}}" method="post" >
+    <fieldset class="uk-fieldset">
+
+        <legend class="uk-legend">Editar Curso</legend>
+
+        <div class="uk-margin">
+            <h4>Fecha de inicio</h4>
+             <input value="{{course.fecha}}" name="date" type="date" >
+        </div>
+
+        <div class="uk-margin">
+            <h4>Curso actual: {{course.kind}}</h4>
+            <select name="kind" class="uk-select">
+                <option value="Web Development">Web Dev</option>
+                <option value="UX/UI">UX/UI</option>
+            </select>
+        </div>
+        
+        <div class="uk-margin">
+            <h4>Tipo actual: {{course.type}}</h4>
+            <select name="type" class="uk-select">
+                <option value="Full-time">Full-time</option>
+                <option value="Part-time">Part-time</option>
+            </select>
+        </div>
+
+    </fieldset>
+    <input value="Actualizar" type="submit" class="uk-button uk-button-danger">
+</form>
+
+</div>
+
+</section>
+
+
+
+
+
+
+<div id="modal-center" class="uk-flex-top" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+
+       
+
+ 
+
+
+
+
+    </div>
+</div>

@@ -4,6 +4,8 @@ const User = require('../models/User');
 //mail
 const sendMail = require('../helpers/mailer').accountCreatedMail;
 const passport = require('passport');
+//files
+const uploads = require('../helpers/cloudinary');
 
 //argonauti@yahoo.com
 
@@ -32,6 +34,16 @@ router.post('/login', passport.authenticate('local', {
     successRedirect:'/auth/profile',
     failureRedirect:'/auth/login?error=hay un error con tu email o contraseña'
 }));
+
+router.post('/profile', isAuthenticated, uploads, (req,res,next)=>{
+    console.log('before',req.file);
+    if(!req.file) return res.redirect('/auth/profile');
+    console.log(req.file);
+    req.user.photoURL = req.file.url;
+    User.findByIdAndUpdate(req.user._id, req.user)
+    .then(user=>res.redirect('/auth/profile'))
+    .catch(e=>next(e));
+});
 
 router.get('/profile', isAuthenticated, (req,res, next)=>{
     req.app.locals.currentUser = req.user;  

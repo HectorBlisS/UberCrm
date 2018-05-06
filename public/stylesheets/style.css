@@ -65,11 +65,13 @@ a:hover{
   position: relative;
 }
 
-.portada #profilePic{
+.portada .profilePic{
   position: absolute;
   top:-75px;
   width: 150px;
   left:calc(50% - 75px);
+  cursor: pointer;
+  border-radius: 50%;
 }
 
 .selectable{

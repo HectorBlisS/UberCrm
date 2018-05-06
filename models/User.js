@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const PassportLocalMongoose = require('passport-local-mongoose');
 const mongoosePaginate = require('mongoose-paginate');
+const mongooseToCsv = require('mongoose-to-csv');
 
 
 const userSchema = new Schema({
@@ -47,5 +48,24 @@ const userSchema = new Schema({
 
 userSchema.plugin(mongoosePaginate);
 userSchema.plugin(PassportLocalMongoose, {usernameField:"email"});
+userSchema.plugin(mongooseToCsv, {
+	headers: 'FullName Email PhotoURL Course Payment Status AppId Active',
+	constraints: {
+	  'Email': 'email',
+	  'PhotoURL': 'photoURL',
+	  'Course': 'selectedCourse',
+	  'Payment':'paymentPic',
+	  'Status':'status',
+	  'Active':'active'
+	},
+	virtuals: {
+	  'FullName': function(doc) {
+		return doc.app.name + " " + doc.app.surName;
+	  },
+	  'AppId': function(doc) {
+		return doc.app._id
+	  }
+	}
+  });
 
 module.exports = mongoose.model("User", userSchema);

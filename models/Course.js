@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const mongooseToCsv = require('mongoose-to-csv');
 
 const courseSchema = new Schema({
 	active:{
@@ -38,6 +39,27 @@ const courseSchema = new Schema({
         updatedAt: "updated_at"
     }
 });
+
+courseSchema.plugin(mongooseToCsv, {
+	headers: 'Kind Type Date Publisher Enrolled Active Desc',
+	constraints: {
+	  'Kind': 'kind',
+	  'Type': 'type',
+	  'Date': 'date',
+	  'Publisher':'publisher',
+	  'Enrolled':'enrolled',
+	  'Active':'active',
+	  'Desc':'desc'
+	}
+	// virtuals: {
+	//   'BlisS': function(doc) {
+	// 	return doc.enrolled[0];
+	//   }
+	//   'Lastname': function(doc) {
+	// 	return doc.fullname.split(' ')[1];
+	//   }
+	// }
+  });
 
 
 module.exports = mongoose.model("Course", courseSchema);

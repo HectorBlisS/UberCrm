@@ -2,12 +2,37 @@ const router = require('express').Router();
 const Course = require('../models/Course');
 const User = require('../models/User');
 const moment = require('moment');
+const fs = require('fs');
+const path = require('path');
 
 function isAdmin(req,res, next){
     if(!req.isAuthenticated()) return res.redirect('/auth/login');
     if(req.user.role !== "ADMIN") return res.redirect('/auth/profile');
     return next();
 }
+
+
+// User.find({}).exec()
+//   .then(function(docs) {
+//     User.csvReadStream(docs)
+//       .pipe(fs.createWriteStream('users.csv'));
+//   });
+
+
+//testing export **  Pinche hermoso **
+router.get('/users/export', isAdmin, (req,res,next)=>{
+    let query = { role: { $not: { $eq: "ADMIN" } } };
+    User.find(query)
+        .populate('app')
+        .then(docs=>{
+            User.csvReadStream(docs)
+            .pipe(fs.createWriteStream(path.join(__dirname, '../public', 'bliss.csv')))
+            .on('finish', function () {
+                res.sendFile(path.join(__dirname, '../public', 'bliss.csv'));
+              });
+        })
+        
+});
 
 router.get('/users/:id', isAdmin, (req,res, next)=>{
     User.findById(req.params.id)

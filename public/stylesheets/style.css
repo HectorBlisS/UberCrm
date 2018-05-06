@@ -32,6 +32,7 @@ a:hover{
 .no-bootcamp:hover{
   transform: scale(1.2);
   background-color: #4dc3f9;
+  border: none;
 }
 
 .si-bootcamp{

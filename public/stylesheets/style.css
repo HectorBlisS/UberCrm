@@ -88,3 +88,49 @@ a:hover{
   transform: scale(1.1)
 }
 
+.video{
+  height: 87vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.video .cover{
+  height: 100%;
+  width: 100%;
+  /* background-color:#4dc3f9; */
+  background-color: transparent;
+  opacity: .5;
+  position: absolute;
+  top:0;
+  left:0;
+  filter: blur(100%);
+}
+
+#call-to-action{
+  position: fixed;
+  bottom:15%;
+  transform: scale(1.5);
+  transition:all .3s ease;
+}
+#call-to-action:hover{
+  transform: scale(2)
+}
+
+#mute{
+  position: absolute;
+  font-size: 5rem;
+  top:10%;
+  left:5%;
+  color:#4dc3f9;
+  /* background-color: white; */
+  border-radius:50%; 
+  transition:all .4s ease;
+  cursor: pointer;
+}
+#mute:hover{
+  transform: scale(1.2);
+}
+

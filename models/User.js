@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const PassportLocalMongoose = require('passport-local-mongoose');
+const mongoosePaginate = require('mongoose-paginate');
+
 
 const userSchema = new Schema({
     active:{
@@ -43,6 +45,7 @@ const userSchema = new Schema({
     }
 });
 
+userSchema.plugin(mongoosePaginate);
 userSchema.plugin(PassportLocalMongoose, {usernameField:"email"});
 
 module.exports = mongoose.model("User", userSchema);

@@ -16,6 +16,8 @@ moment.locale('es');
 const hbs = require('hbs');
 hbs.registerHelper('date', (content)=>moment(content).format("LL"));
 hbs.registerHelper('fromNow', (content)=>moment(content).fromNow());
+hbs.registerHelper('inc', (content)=>Number(content)+1);
+hbs.registerHelper('dec', (content)=>Number(content)-1);
 
 
 //helpers

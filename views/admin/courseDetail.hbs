@@ -13,7 +13,7 @@
 
 <div class="uk-overflow-auto">
 
-<form action="/admin/courses/{{course._id}}" method="post" >
+<form class="uk-card uk-card-body uk-width-1-2@m" action="/admin/courses/{{course._id}}" method="post" >
     <fieldset class="uk-fieldset">
 
         <legend class="uk-legend">Editar Curso</legend>
@@ -24,22 +24,26 @@
         </div>
 
         <div class="uk-margin">
-            <h4>Curso actual: {{course.kind}}</h4>
+            <h4>Curso </h4>
             <select name="kind" class="uk-select">
+                <option selected value="{{course.kind}}">{{course.kind}}</option>
                 <option value="Web Development">Web Dev</option>
                 <option value="UX/UI">UX/UI</option>
             </select>
         </div>
         
         <div class="uk-margin">
-            <h4>Tipo actual: {{course.type}}</h4>
+            <h4>Tipo</h4>
             <select name="type" class="uk-select">
+                <option selected value="{{course.type}}">{{course.type}}</option>
                 <option value="Full-time">Full-time</option>
                 <option value="Part-time">Part-time</option>
             </select>
         </div>
         <br>
-        <label><input value="{{active}}" name="active" class="uk-checkbox" type="checkbox">Activo</label>
+        <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+            <label><input {{#if course.active}} checked {{/if}} name="active" class="uk-checkbox" type="checkbox">Activo</label>
+        </div>
 
     </fieldset>
     <input value="Actualizar" type="submit" class="uk-button uk-button-danger">

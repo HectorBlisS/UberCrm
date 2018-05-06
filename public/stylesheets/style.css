@@ -75,7 +75,7 @@ a:hover{
 .selectable{
   cursor: pointer;
   transition:all .3s ease-in;
-  margin-right:15px;
+  margin:0 15px;
 }
 .selectable:hover{
   transform: scale(1.1)

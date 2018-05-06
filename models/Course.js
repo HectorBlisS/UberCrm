@@ -24,7 +24,11 @@ const courseSchema = new Schema({
 	publisher:{
 		type:Schema.Types.ObjectId,
 		ref:"User"
-	}
+	},
+	enrolled:[{
+		type:Schema.Types.ObjectId,
+		ref:"User"
+	}]
 	
 
 },

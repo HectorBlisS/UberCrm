@@ -19,12 +19,36 @@ router.get('/users/:id', isAdmin, (req,res, next)=>{
     .catch(e=>next(e));
 })
 
-router.get('/users', isAdmin, (req,res,next)=>{
-    User.find({ role: { $not: { $eq: "ADMIN" } } } )
-    .populate('selectedCourse')
+router.post('/users', isAdmin, (req,res,next)=>{
+    const field = req.body.search;
+    query = {$or:[
+           {username:{$regex: field, $options: 'i'}},
+           {email:{$regex: field, $options: 'i'}},
+            // {"app.name":{$regex:field, $options: 'i'}},
+            // {"app.surName":{$regex:field, $options: 'i'}},
+            // {"app.email":{$regex:field, $options: 'i'}}
+        ]
+    };
+    User.find(query)
     .populate('app')
-    .then(users=>{
-        res.render('admin/users', {users});
+    .then(r=>{
+        res.render('admin/users', {users:r});
+    })
+    .catch(e=>next(e))
+})
+
+router.get('/users', isAdmin, (req,res,next)=>{
+    const options = {};
+    let query = { role: { $not: { $eq: "ADMIN" } } };
+    if(req.query.page && req.query.page <= req.query.pages && req.query.page > 0){
+		options["page"] = Number(req.query.page);
+		delete req.query.page;
+	}
+    options["limit"] = Number(10);
+    options['populate'] = ['app', 'selectedCourse'];
+    User.paginate(query,options)
+    .then(result=>{
+        res.render('admin/users', {users:result.docs,result});
     })
     .catch(e=>next(e));
 });
@@ -33,6 +57,7 @@ router.get('/users', isAdmin, (req,res,next)=>{
 router.get('/courses/:id', isAdmin, (req,res,next)=>{
     Course.findById(req.params.id)
     .then(course=>{
+        console.log(course)
         course.fecha = moment(course.date).format('YYYY-MM-DD'); 
         res.render('admin/courseDetail', {course});
     })

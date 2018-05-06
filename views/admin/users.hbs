@@ -9,6 +9,27 @@
 	Usuarios
 </a>
 <a class="uk-button uk-button-primary" href="#modal-center" uk-toggle>Crear Usuario</a>
+{{!-- search --}}
+
+<form action="/admin/users" method="post" class="uk-search uk-search-large">
+    <span uk-search-icon></span>
+    <input name="search" class="uk-search-input" type="search" placeholder="Buscale...">
+</form>
+
+
+{{!-- Paginacion --}}
+<ul class="uk-pagination uk-flex-right" uk-margin>
+    <li><a href="/admin/users?page={{dec result.page}}&pages={{result.pages}}"><span uk-pagination-previous></span></a></li>
+    <li><a href="/admin/users?page=1">1</a></li>
+    <li class="uk-disabled"><span>...</span></li>
+    <li><a href="/admin/users?page={{dec result.page}}">{{dec result.page}}</a></li>
+    <li class="uk-active"><span>{{result.page}}</span></li>
+    <li><a href="/admin/users?page={{inc result.page}}">{{inc result.page}}</a></li>
+    <li class="uk-disabled"><span>...</span></li>
+    <li><a href="/admin/users?page={{result.pages}}">{{result.pages}}</a></li>
+    <li><a href="/admin/users?page={{inc result.page}}&pages={{result.pages}}"><span uk-pagination-next></span></a></li>
+</ul>
+{{!-- Paginacion --}}
 
 
 <div class="uk-overflow-auto">
@@ -49,6 +70,20 @@
         </tbody>
     </table>
 </div>
+
+{{!-- Paginacion --}}
+<ul class="uk-pagination uk-flex-right" uk-margin>
+    <li><a href="/admin/users?page={{dec result.page}}&pages={{result.pages}}"><span uk-pagination-previous></span></a></li>
+    <li><a href="/admin/users?page=1">1</a></li>
+    <li class="uk-disabled"><span>...</span></li>
+    <li><a href="/admin/users?page={{dec result.page}}">{{dec result.page}}</a></li>
+    <li class="uk-active"><span>{{result.page}}</span></li>
+    <li><a href="/admin/users?page={{inc result.page}}">{{inc result.page}}</a></li>
+    <li class="uk-disabled"><span>...</span></li>
+    <li><a href="/admin/users?page={{result.pages}}">{{result.pages}}</a></li>
+    <li><a href="/admin/users?page={{inc result.page}}&pages={{result.pages}}"><span uk-pagination-next></span></a></li>
+</ul>
+{{!-- Paginacion --}}
 
 </section>
 

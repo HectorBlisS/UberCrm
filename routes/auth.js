@@ -2,7 +2,7 @@ const router = require('express').Router();
 const App = require('../models/Application');
 const User = require('../models/User');
 //mail
-const sendMail = require('../helpers/mailer');
+const sendMail = require('../helpers/mailer').accountCreatedMail;
 const passport = require('passport');
 
 //argonauti@yahoo.com
@@ -84,7 +84,7 @@ router.post('/confirm/:appId', (req,res,next)=>{
             req.body.email = newUser.email;
             passport.authenticate('local')(req, res, function () {
                 //mail
-                sendMail(newUser.email, "Bienvenido!", "Felicidades!, haz comenzado el proceso para hacer valida tu beca UBER + Ironhack")
+                sendMail(newUser.email, "Bienvenido!", "Felicidades!, haz comenzado el proceso para hacer valida tu beca UBER + Ironhack", app.name)
                 .then(r=>console.log("mail: ",r))
                 .catch(e=>console.log("email: ",e))
                 res.redirect('/auth/profile');

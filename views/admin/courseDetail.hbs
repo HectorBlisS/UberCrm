@@ -22,12 +22,16 @@
             <h4>Fecha de inicio</h4>
              <input value="{{course.fecha}}" name="date" type="date" >
         </div>
+        <div class="uk-margin">
+            <h4>Fecha de Finalización</h4>
+             <input value="{{course.endFecha}}" name="endDate" type="date" >
+        </div>
 
         <div class="uk-margin">
             <h4>Curso </h4>
             <select name="kind" class="uk-select">
                 <option selected value="{{course.kind}}">{{course.kind}}</option>
-                <option value="Web Development">Web Dev</option>
+                <option value="Web Dev">Web Dev</option>
                 <option value="UX/UI">UX/UI</option>
             </select>
         </div>
@@ -39,6 +43,10 @@
                 <option value="Full-time">Full-time</option>
                 <option value="Part-time">Part-time</option>
             </select>
+        </div>
+        <div class="uk-margin">
+            <h4>Lugares</h4>
+            <input value="{{course.totalPlaces}}" type="number" max="25" name="totalPlaces" class="uk-input"/>
         </div>
         <br>
         <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">

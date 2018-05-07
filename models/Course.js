@@ -11,10 +11,14 @@ const courseSchema = new Schema({
 		type:Date,
 		required:true
 	},
+	endDate:{
+		type:Date,
+		required:false
+	},
 	kind:{
 		type:String,
-		enum:["Web Development", "UX/UI"],
-		default:"Web Development"
+		enum:["Web Dev", "UX/UI"],
+		default:"Web Dev"
 	},
 	type:{
 		type:String,
@@ -29,7 +33,11 @@ const courseSchema = new Schema({
 	enrolled:[{
 		type:Schema.Types.ObjectId,
 		ref:"User"
-	}]
+	}],
+	totalPlaces:{
+		type:Number,
+		default:17
+	}
 	
 
 },
@@ -40,9 +48,18 @@ const courseSchema = new Schema({
     }
 });
 
+//virtuals
+courseSchema.virtual('totalEnrolled').get(function() {  
+    return this.enrolled.length;
+});
+courseSchema.virtual('available').get(function() {  
+    return this.enrolled.length < this.totalPlaces;
+});
+
 courseSchema.plugin(mongooseToCsv, {
-	headers: 'Kind Type Date Publisher Enrolled Active Desc',
+	headers: 'Kind Type Lugares Date Publisher Enrolled Active Desc',
 	constraints: {
+	  'Lugares':'totalPlaces',
 	  'Kind': 'kind',
 	  'Type': 'type',
 	  'Date': 'date',

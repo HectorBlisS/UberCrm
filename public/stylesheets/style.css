@@ -78,7 +78,8 @@ a:hover{
 .selectable{
   cursor: pointer;
   transition:all .3s ease-in;
-  margin:0 15px;
+  margin:15px;
+  width: 350px;
 }
 .selectable:hover{
   transform: scale(1.1)
@@ -134,4 +135,11 @@ a:hover{
   transform: scale(1.2);
   color:white;
 }
+
+.disabled{
+  pointer-events: none;
+  background-color: grey;
+  cursor: not-allowed;
+}
+
 

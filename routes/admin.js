@@ -84,6 +84,7 @@ router.get('/courses/:id', isAdmin, (req,res,next)=>{
     .then(course=>{
         console.log(course)
         course.fecha = moment(course.date).format('YYYY-MM-DD'); 
+        course.endFecha = moment(course.endDate).format('YYYY-MM-DD');
         res.render('admin/courseDetail', {course});
     })
     .catch(e=>next(e));

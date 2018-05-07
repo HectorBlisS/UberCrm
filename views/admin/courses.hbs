@@ -18,6 +18,7 @@
                 <th class="uk-table-shrink">Select</th>
                 <th class="uk-table-shrink">Img</th>
                 <th class="uk-table-expand">Clase</th>
+                <th class="uk-table-shink">Apartados</th>
                 <th class="uk-width-small">Tipo</th>
                 <th class="uk-table-shrink uk-text-nowrap">Fecha</th>
                 <th class="uk-table-small">Activo</th>
@@ -31,6 +32,7 @@
                 <td class="uk-table-truncate">
                     <a class="uk-link-reset" href="/admin/courses/{{this._id}}">{{this.kind}}</a>
                 </td>
+                <td class="uk-text-truncate"> {{this.totalEnrolled}} / {{this.totalPlaces}} </td>
                 <td class="uk-text-truncate">{{this.type}}</td>
                 <td uk-tooltip="{{{fromNow this.date}}}" class="uk-text-primary uk-text-nowrap">{{{date this.date}}}</td>
                 {{#if this.active}}

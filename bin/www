@@ -19,6 +19,11 @@ app.set('port', port);
  * Create HTTP server.
  */
 
+ //HTTPS
+const enforce = require('express-sslify');
+app.use(enforce.HTTPS());
+
+
 var server = http.createServer(app);
 
 /**

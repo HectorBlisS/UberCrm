@@ -17,6 +17,7 @@
     "express": "~4.15.5",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
+    "express-sslify": "^1.2.0",
     "hbs": "~4.0.1",
     "moment": "^2.22.1",
     "mongoose": "^5.0.13",

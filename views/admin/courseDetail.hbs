@@ -11,9 +11,11 @@
 <a class="uk-button uk-button-primary" href="/admin/courses" uk-toggle>Cancelar</a>
 
 
-<div class="uk-overflow-auto">
+<article class="bliss-flex">
 
-<form class="uk-card uk-card-body uk-width-1-2@m" action="/admin/courses/{{course._id}}" method="post" >
+<div class="uk-overflow-auto"> {{!--  --}}
+
+<form class="uk-card uk-card-body" action="/admin/courses/{{course._id}}" method="post" >
     <fieldset class="uk-fieldset">
 
         <legend class="uk-legend">Editar Curso</legend>
@@ -57,7 +59,25 @@
     <input value="Actualizar" type="submit" class="uk-button uk-button-danger">
 </form>
 
+</div>{{!--  forms --}}
+
+{{!-- alumni --}}
+<div>
+    <h3>Apartados: {{course.totalEnrolled}}</h3>
+
+    <ul class="uk-list uk-list-striped">
+            {{#each course.enrolled}}
+        <li>
+            <a href="/admin/users/{{this._id}}">
+            {{this.username}}
+            </a>
+        </li>
+            {{/each}}
+    </ul>
+
 </div>
+
+</article>
 
 </section>
 

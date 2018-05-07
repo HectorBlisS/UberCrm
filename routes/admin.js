@@ -81,8 +81,9 @@ router.get('/users', isAdmin, (req,res,next)=>{
 
 router.get('/courses/:id', isAdmin, (req,res,next)=>{
     Course.findById(req.params.id)
+    .populate('enrolled')
     .then(course=>{
-        console.log(course)
+        console.log("chet",course.enrolled.length)
         course.fecha = moment(course.date).format('YYYY-MM-DD'); 
         course.endFecha = moment(course.endDate).format('YYYY-MM-DD');
         res.render('admin/courseDetail', {course});

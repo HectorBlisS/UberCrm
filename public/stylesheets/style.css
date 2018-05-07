@@ -142,4 +142,15 @@ a:hover{
   cursor: not-allowed;
 }
 
+.bliss-flex{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.bliss-flex div{
+  flex-grow:1;
+}
+
 

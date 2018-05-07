@@ -20,13 +20,9 @@ app.set('port', port);
  */
 
  //HTTPS
-const enforce = require('express-sslify');
-
-
 
 var server = http.createServer(app);
 
-server.use(enforce.HTTPS());
 
 /**
  * Listen on provided port, on all network interfaces.

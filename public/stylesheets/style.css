@@ -89,7 +89,7 @@ a:hover{
 }
 
 .video{
-  height: 87vh;
+  height: 86vh;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -132,5 +132,6 @@ a:hover{
 }
 #mute:hover{
   transform: scale(1.2);
+  color:white;
 }
 

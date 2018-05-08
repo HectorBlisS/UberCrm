@@ -39,6 +39,7 @@ router.get('/users/:id', isAdmin, (req,res, next)=>{
     .populate('app')
     .populate('selectedCourse')
     .then(user=>{
+//        console.log(user);
         res.render('admin/userDetail', {user});
     })
     .catch(e=>next(e));
@@ -81,7 +82,13 @@ router.get('/users', isAdmin, (req,res,next)=>{
 
 router.get('/courses/:id', isAdmin, (req,res,next)=>{
     Course.findById(req.params.id)
-    .populate('enrolled')
+    .populate({
+        path: 'enrolled',
+        model: 'User',
+        populate: {
+          path: 'app',
+          model: 'App'
+        }})
     .then(course=>{
         console.log("chet",course.enrolled.length)
         course.fecha = moment(course.date).format('YYYY-MM-DD'); 

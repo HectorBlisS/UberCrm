@@ -151,6 +151,7 @@ a:hover{
 
 .bliss-flex div{
   flex-grow:1;
+  max-width: 600px;
 }
 
 

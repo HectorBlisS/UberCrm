@@ -65,15 +65,31 @@
 <div>
     <h3>Apartados: {{course.totalEnrolled}}</h3>
 
-    <ul class="uk-list uk-list-striped">
+<article style="display:flex;flex-wrap:wrap" >
             {{#each course.enrolled}}
-        <li>
-            <a href="/admin/users/{{this._id}}">
-            {{this.username}}
-            </a>
-        </li>
+
+
+            <div class="uk-card uk-card-default uk-width-1-4@m" style="margin:5px">
+                <div class="uk-card-header">
+                    <div class="uk-grid-small" uk-grid>
+                        <div class="uk-width-auto">
+                            <img class="uk-border-circle" width="40" height="40" src="https://cdn-images-1.medium.com/max/1200/0*jp3IFb08Sy3_k3N_.">
+                        </div>
+                        <div class="uk-width-expand">
+                            <a href="/admin/users/{{this._id}}">
+                            <span uk-tooltip="{{this.username}}" class="uk-card-title uk-margin-remove-bottom">{{this.app.name}} {{this.app.surName}}</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            
+        
             {{/each}}
-    </ul>
+</article>
+
 
 </div>
 

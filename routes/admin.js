@@ -4,12 +4,43 @@ const User = require('../models/User');
 const moment = require('moment');
 const fs = require('fs');
 const path = require('path');
+const App = require('../models/Application');
 
 function isAdmin(req,res, next){
     if(!req.isAuthenticated()) return res.redirect('/auth/login');
     if(req.user.role !== "ADMIN") return res.redirect('/auth/profile');
     return next();
 }
+
+router.post('/apps', (req,res, next)=>{
+    const query = {};
+    if(req.body.personal_interviewer) query['personal_interviewer'] = req.body.personal_interviewer;
+    if(req.body.interview_score) query['interview_score'] = req.body.interview_score;
+    if(req.body.webScore) query['webScore'] = {$gte:req.body.webScore};
+    App.paginate(query)
+    .then(result=>{
+        res.render('admin/apps', {apps:result.docs,result,theQuery:query});
+    })
+    .catch(e=>next(e))
+});
+
+router.get('/apps', (req,res,next)=>{
+    const options = {};
+    if(req.query.page && req.query.page <= req.query.pages && req.query.page > 0){
+        options["page"] = Number(req.query.page);
+    }
+    delete req.query.page;
+    delete req.query.pages;
+    const {query} = req;    
+    query['interview_score'] = {$exists:true};
+    let theQuery = JSON.stringify(query);
+    App.paginate(query, options)
+    .then(result=>{
+        console.log(result)
+        res.render('admin/apps', {apps:result.docs,result,theQuery});
+    })
+    .catch(e=>next(e))
+});
 
 
 // User.find({}).exec()
@@ -74,7 +105,7 @@ router.get('/users', isAdmin, (req,res,next)=>{
     options['populate'] = ['app', 'selectedCourse'];
     User.paginate(query,options)
     .then(result=>{
-        res.render('admin/users', {users:result.docs,result});
+        res.render('admin/users', {apps:result.docs,result});
     })
     .catch(e=>next(e));
 });

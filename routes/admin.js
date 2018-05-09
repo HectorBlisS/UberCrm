@@ -14,7 +14,7 @@ function isAdmin(req,res, next){
     return next();
 }
 
-router.post('/apps/download', (req,res, next)=>{
+router.post('/apps/download', isAdmin, (req,res, next)=>{
     const query = JSON.parse(req.body.query);
     var filename   = "products.csv";
     //var dataArray;
@@ -39,7 +39,7 @@ router.post('/apps/download', (req,res, next)=>{
 
 })
 
-router.post('/apps', (req,res, next)=>{
+router.post('/apps', isAdmin, (req,res, next)=>{
     const query = {};
     if(req.body.personal_interviewer) query['personal_interviewer'] = req.body.personal_interviewer;
     if(req.body.interview_score) query['interview_score'] = req.body.interview_score;

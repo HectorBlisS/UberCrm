@@ -9,9 +9,13 @@
 	Usuarios
 </a>
 {{!-- <a class="uk-button uk-button-primary" href="/admin/users/export" uk-toggle> --}}
-<form method="post" action="/admin/download">
-    <input type="text" hidden name="query" />
-    <input class="uk-margin-small-right" uk-icon="move" value="Descargar en CSV" />
+<form method="post" action="/admin/apps/download">
+    <input value="{{theQuery}}" type="text" hidden name="query" />
+    <button type="submit" class="uk-button uk-button-primary">
+    <span class="uk-margin-small-right" uk-icon="move"></span>
+    Descargar en CSV
+    </button>
+    <input type="submit">
 </form>
 
 {{!-- search --}}
@@ -74,6 +78,7 @@
                 <th class="uk-width-small">email</th> 
                 <th class="uk-width-small">interviewScore</th>
                 <th class="uk-width-small">interviewer</th>  
+                <th class="uk-width-small">interview</th>
                 <th class="uk-width-small">tel</th>   
                 {{!-- <th class="uk-width-small">cp</th> --}}
                 <th class="uk-width-small">kindOfUser</th>
@@ -90,7 +95,6 @@
                 <th class="uk-width-small">evaluator</th>
                 <th class="uk-width-small">webScore</th>
                 <th class="uk-width-small">technicalCategory</th>
-                <th class="uk-width-small">interview</th>
 
 
             </tr>
@@ -116,6 +120,9 @@
                 </td>
                 <td>
                     {{this.personal_interviewer}}
+                </td>
+                <td>
+                    {{this.interviewer_comment}}
                 </td>
                 <td>
                     {{this.tel}}
@@ -144,9 +151,7 @@
                 <td>
                     {{this.technicalCategory}}
                 </td>
-                <td>
-                    {{this.interviewer_comment}}
-                </td>
+
 
             </tr>
             {{else}}

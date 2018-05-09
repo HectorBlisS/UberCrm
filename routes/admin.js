@@ -5,6 +5,8 @@ const moment = require('moment');
 const fs = require('fs');
 const path = require('path');
 const App = require('../models/Application');
+var csv = require('csv-express')
+
 
 function isAdmin(req,res, next){
     if(!req.isAuthenticated()) return res.redirect('/auth/login');
@@ -12,14 +14,40 @@ function isAdmin(req,res, next){
     return next();
 }
 
+router.post('/apps/download', (req,res, next)=>{
+    const query = JSON.parse(req.body.query);
+    var filename   = "products.csv";
+    //var dataArray;
+    App.find(query).lean()
+    .then(apps=>{
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'text/csv');
+        res.setHeader("Content-Disposition", 'attachment; filename='+filename);
+        res.csv(apps, true);
+
+    })
+    .catch(e=>next(e))
+    // App.find(query)
+    // // .populate('app')
+    // .then(docs=>{
+    //     App.csvReadStream(docs)
+    //     .pipe(fs.createWriteStream(path.join(__dirname, '../public', 'bliss.csv')))
+    //     .on('finish', function () {
+    //         res.sendFile(path.join(__dirname, '../public', 'bliss.csv'));
+    //       });
+    // })
+
+})
+
 router.post('/apps', (req,res, next)=>{
     const query = {};
     if(req.body.personal_interviewer) query['personal_interviewer'] = req.body.personal_interviewer;
     if(req.body.interview_score) query['interview_score'] = req.body.interview_score;
     if(req.body.webScore) query['webScore'] = {$gte:req.body.webScore};
+    let theQuery = JSON.stringify(query);
     App.paginate(query)
     .then(result=>{
-        res.render('admin/apps', {apps:result.docs,result,theQuery:query});
+        res.render('admin/apps', {apps:result.docs,result,theQuery});
     })
     .catch(e=>next(e))
 });

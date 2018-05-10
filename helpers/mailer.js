@@ -5,8 +5,8 @@ const fs = require('fs');
 let transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-      user: 'bliss@ironhack.com',
-      pass: 'Poweroso77' 
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS
     }
 });
 const accountCreated = hbs.compile(fs.readFileSync((__dirname, './views/mail/accountCreated.hbs'), 'utf8'));

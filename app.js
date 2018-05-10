@@ -6,6 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('./helpers/passport');
+require("dotenv").config();
+
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -20,12 +22,7 @@ hbs.registerHelper('inc', (content)=>Number(content)+1);
 hbs.registerHelper('dec', (content)=>Number(content)-1);
 
 
-
-
 //helpers
-
-
-
 
 
 var app = express();
@@ -43,8 +40,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 const mongoose = require("mongoose");
-//mongoose.connect("mongodb://bliss:bliss@ds147668.mlab.com:47668/fixter_eshop_feb_2018", ()=>console.log("Conectado a la BD"))
-mongoose.connect("mongodb://oswaldinho:oswaldinho@ds263759.mlab.com:63759/ironhack-test", ()=>console.log("Conectado a la BD"))
+mongoose.connect(process.env.DATABASE, ()=>console.log("Conectado a la BD"))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

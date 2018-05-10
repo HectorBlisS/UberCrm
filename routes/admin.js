@@ -196,9 +196,15 @@ router.post('/courses', isAdmin, (req,res, next)=>{
 })
 
 router.get('/courses', isAdmin, (req,res,next)=>{
-    Course.find()
+    let total;
+    Course.find().count()
+    .then(count=>{
+        total=count;
+        return Course.find()
+    })
+    
     .then(courses=>{
-        res.render('admin/courses', {courses})
+        res.render('admin/courses', {courses, total})
     })
     .catch(e=>next(e));
 });

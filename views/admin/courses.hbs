@@ -14,7 +14,7 @@
 </a>
 <a class="uk-button uk-button-primary" href="#modal-center" uk-toggle>Crear Curso</a>
 
-
+<h3>Cursos: {{total}}</h3>
 <div class="uk-overflow-auto">
     <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
         <thead>
@@ -24,7 +24,8 @@
                 <th class="uk-table-expand">Clase</th>
                 <th class="uk-table-shink">Apartados</th>
                 <th class="uk-width-small">Tipo</th>
-                <th class="uk-table-shrink uk-text-nowrap">Fecha</th>
+                <th class="uk-table-shrink uk-text-nowrap">Fecha de Inicio</th>
+                <th class="uk-table-shrink uk-text-nowrap">Fecha de Finalización</th>
                 <th class="uk-table-small">Activo</th>
             </tr>
         </thead>
@@ -44,6 +45,7 @@
                 <td class="uk-text-truncate"> {{this.totalEnrolled}} / {{this.totalPlaces}} </td>
                 <td class="uk-text-truncate">{{this.type}}</td>
                 <td uk-tooltip="{{{fromNow this.date}}}" class="uk-text-primary uk-text-nowrap">{{{date this.date}}}</td>
+                <td uk-tooltip="{{{fromNow this.endDate}}}" class="uk-text-primary uk-text-nowrap">{{{date this.endDate}}}</td>
                 {{#if this.active}}
                 <td class="uk-text-truncate uk-text-success"> {{this.active}} </td>
                 {{else}}
@@ -86,11 +88,20 @@
             <h4>Fecha de inicio</h4>
              <input name="date" type="date" data-uk-datepicker="{format:'DD.MM.YYYY'}">
         </div>
+        <div class="uk-margin">
+            <h4>Fecha de Finalización</h4>
+             <input name="endDate" type="date" data-uk-datepicker="{format:'DD.MM.YYYY'}">
+        </div>
+
+        <div class="uk-margin">
+            <h4>Lugares Disponibles</h4>
+             <input value="17" name="totalPlaces" type="number" >
+        </div>
 
         <div class="uk-margin">
             <h4>Curso</h4>
             <select name="kind" class="uk-select">
-                <option value="Web Development">Web Dev</option>
+                <option value="Web Dev">Web Dev</option>
                 <option value="UX/UI">UX/UI</option>
             </select>
         </div>

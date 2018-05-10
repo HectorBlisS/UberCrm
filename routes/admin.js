@@ -105,7 +105,14 @@ router.get('/users/export', isAdmin, (req,res,next)=>{
 });
 
 router.get('/users/:id', isAdmin, (req,res, next)=>{
-    User.findById(req.params.id)
+    let promise;
+    if(req.query.accepted) {
+        promise = User.findByIdAndUpdate(req.params.id, {status:"ACCEPTED"});
+    } else{
+        promise = User.findById(req.params.id);
+    }
+    
+    promise
     .populate('app')
     .populate('selectedCourse')
     .then(user=>{
@@ -127,8 +134,9 @@ router.post('/users', isAdmin, (req,res,next)=>{
     };
     User.find(query)
     .populate('app')
-    .then(r=>{
-        res.render('admin/users', {users:r});
+    .then(users=>{
+        console.log(users)
+        res.render('admin/users', {users});
     })
     .catch(e=>next(e))
 })
@@ -144,7 +152,7 @@ router.get('/users', isAdmin, (req,res,next)=>{
     options['populate'] = ['app', 'selectedCourse'];
     User.paginate(query,options)
     .then(result=>{
-        res.render('admin/users', {apps:result.docs,result});
+        res.render('admin/users', {users:result.docs,result});
     })
     .catch(e=>next(e));
 });

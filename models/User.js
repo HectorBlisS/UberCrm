@@ -36,7 +36,7 @@ const userSchema = new Schema({
     paymentPic:String,
     status:{
         type:String,
-        enum:["PENDING", "SENT", "ENROLLED"],
+        enum:["PENDING", "SENT", "ACCEPTED"],
         default:"PENDING"
     }
 

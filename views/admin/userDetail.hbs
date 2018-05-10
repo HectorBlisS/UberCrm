@@ -34,6 +34,14 @@
                         {{user.email}}
                     </a>
                 </li>
+                <li>
+                    <span class="uk-text-danger">{{user.status}}</span>
+                </li>
+                <li>
+                    <a href="/admin/users/{{user._id}}/?accepted=true" class="uk-button uk-button-primary uk-text-success">
+	                    Aceptar Comprobante
+                    </a>
+                </li>
             </ul>
         </div>
     </header>

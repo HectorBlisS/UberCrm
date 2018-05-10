@@ -6,6 +6,7 @@ const mongooseToCsv = require('mongoose-to-csv');
 
 
 const userSchema = new Schema({
+
     active:{
         type:Boolean,
         default:true

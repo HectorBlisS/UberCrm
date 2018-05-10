@@ -20,6 +20,8 @@ hbs.registerHelper('inc', (content)=>Number(content)+1);
 hbs.registerHelper('dec', (content)=>Number(content)-1);
 
 
+
+
 //helpers
 
 

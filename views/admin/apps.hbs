@@ -26,7 +26,18 @@
 
 <h3>Total: {{result.total}}</h3>
 {{!-- Paginacion --}}
+
+
 <ul class="uk-pagination uk-flex-right" uk-margin>
+    <li><a href="/admin/apps?page={{dec result.page}}&pages={{result.pages}}"><span uk-pagination-previous></span></a></li>
+
+    <li class="uk-active"><span>{{result.page}}</span></li>
+
+    <li><a href="/admin/apps?page={{inc result.page}}&pages={{result.pages}}"><span uk-pagination-next></span></a></li>
+</ul>
+
+
+{{!-- <ul class="uk-pagination uk-flex-right" uk-margin>
     <li><a href="/admin/apps?page={{dec result.page}}&pages={{result.pages}}"><span uk-pagination-previous></span></a></li>
     <li><a href="/admin/apps?page=1&pages={{result.pages}}">1</a></li>
     <li class="uk-disabled"><span>...</span></li>
@@ -36,7 +47,7 @@
     <li class="uk-disabled"><span>...</span></li>
     <li><a href="/admin/apps?page={{result.pages}}&pages={{result.pages}}">{{result.pages}}</a></li>
     <li><a href="/admin/apps?page={{inc result.page}}&pages={{result.pages}}"><span uk-pagination-next></span></a></li>
-</ul>
+</ul> --}}
 {{!-- Paginacion --}}
 {{!-- Filtros --}}
         <form action="/admin/apps" method="post" class="uk-margin uk-flex">
@@ -77,7 +88,7 @@
                 <th class="uk-width-small">email</th> 
                 <th class="uk-width-small">interviewScore</th>
                 <th class="uk-width-small">interviewer</th>  
-                <th class="uk-width-small">interview</th>
+                {{!-- <th class="uk-width-small">interview</th> --}}
                 <th class="uk-width-small">tel</th>   
                 {{!-- <th class="uk-width-small">cp</th> --}}
                 <th class="uk-width-small">kindOfUser</th>
@@ -120,9 +131,9 @@
                 <td>
                     {{this.personal_interviewer}}
                 </td>
-                <td>
+                {{!-- <td>
                     {{this.interviewer_comment}}
-                </td>
+                </td> --}}
                 <td>
                     {{this.tel}}
                 </td>
@@ -169,13 +180,9 @@
 {{!-- Paginacion --}}
 <ul class="uk-pagination uk-flex-right" uk-margin>
     <li><a href="/admin/apps?page={{dec result.page}}&pages={{result.pages}}"><span uk-pagination-previous></span></a></li>
-    <li><a href="/admin/apps?page=1&pages={{result.pages}}">1</a></li>
-    <li class="uk-disabled"><span>...</span></li>
-    <li><a href="/admin/apps?page={{dec result.page}}&pages={{result.pages}}">{{dec result.page}}</a></li>
+
     <li class="uk-active"><span>{{result.page}}</span></li>
-    <li><a href="/admin/apps?page={{inc result.page}}&pages={{result.pages}}">{{inc result.page}}</a></li>
-    <li class="uk-disabled"><span>...</span></li>
-    <li><a href="/admin/apps?page={{result.pages}}&pages={{result.pages}}">{{result.pages}}</a></li>
+
     <li><a href="/admin/apps?page={{inc result.page}}&pages={{result.pages}}"><span uk-pagination-next></span></a></li>
 </ul>
 {{!-- Paginacion --}}

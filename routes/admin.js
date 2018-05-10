@@ -8,6 +8,7 @@ const App = require('../models/Application');
 var csv = require('csv-express')
 
 
+
 function isAdmin(req,res, next){
     if(!req.isAuthenticated()) return res.redirect('/auth/login');
     if(req.user.role !== "ADMIN") return res.redirect('/auth/profile');
@@ -44,8 +45,18 @@ router.post('/apps', isAdmin, (req,res, next)=>{
     if(req.body.personal_interviewer) query['personal_interviewer'] = req.body.personal_interviewer;
     if(req.body.interview_score) query['interview_score'] = req.body.interview_score;
     if(req.body.webScore) query['webScore'] = {$gte:req.body.webScore};
+
+    //pages
+    const options = {};
+    if(req.query.page && req.query.page <= req.query.pages && req.query.page > 0){
+        options["page"] = Number(req.query.page);
+    }
+    delete req.query.page;
+    delete req.query.pages;
+    query['interview_score'] = {$exists:true};
+
     let theQuery = JSON.stringify(query);
-    App.paginate(query)
+    App.paginate(query, options)
     .then(result=>{
         res.render('admin/apps', {apps:result.docs,result,theQuery});
     })

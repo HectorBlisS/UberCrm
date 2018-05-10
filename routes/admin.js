@@ -214,5 +214,9 @@ router.get("/", isAdmin, (req,res)=>{
 })
 
 
+router.get('/brendi', (req,res)=>{
+    res.render('mail/payUploaded');
+})
+
 
 module.exports = router;

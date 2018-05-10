@@ -53,7 +53,7 @@ router.post('/apps', isAdmin, (req,res, next)=>{
     }
     delete req.query.page;
     delete req.query.pages;
-    query['interview_score'] = {$exists:true};
+    //query['interview_score'] = {$exists:true};
 
     let theQuery = JSON.stringify(query);
     App.paginate(query, options)

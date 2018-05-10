@@ -7,6 +7,7 @@ const uploads = require('../helpers/cloudinary');
 //mail
 const courseSelected = require('../helpers/mailer').courseSelected;
 const payUploaded = require('../helpers/mailer').payUploaded;
+const notifyAdmin = require('../helpers/mailer').notifyAdmin;
 
 function isAuth(req,res,next){
   if(!req.isAuthenticated()) return res.redirect('/auth/login?next=/select');
@@ -34,6 +35,7 @@ router.post('/reserva', uploads, (req,res,next)=>{
   .then(user=>{
     //email
     payUploaded(user.email, "Estamos revisando tu pago", "Maravilloso, estas a solo unas horas de ser un Ironhacker, solo debemos revisar tu comporbante de pago y nos comunicaremos contigo para felicitarte por ser parte! =D", user.app.name)
+    notifyAdmin(user);
     //email
     res.redirect('/auth/profile')
   })

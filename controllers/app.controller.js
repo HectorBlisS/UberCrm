@@ -42,13 +42,10 @@ exports.updateGrades = async (req, res)=>{
 	
 
 	for(let obj of req.body.chunk){
-		console.log(obj);
          App.update({email:obj.email}, {$set:obj}, {upsert:true,multi:true},(err, user) => {
 			 if(err) console.log(err);
      	})
-     }
-
-	console.log(req.body.chunk.length);
+	}
 	res.status(200);
 	res.send("updated");
 

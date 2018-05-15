@@ -15,7 +15,7 @@ function isAuth(req,res,next){
 }
 
 router.get('/politics', (req,res)=>{
-  res.send('Terminos y condiciones');
+  res.render('politics');
 });
 
 router.post('/reserva', uploads, (req,res,next)=>{

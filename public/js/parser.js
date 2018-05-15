@@ -155,6 +155,7 @@ function showUpd(arr){
 		surName: undefined,
 		email:undefined,
 		kindOfUser: undefined,
+        gender: undefined,
 		whyTo:undefined,
 		webScore:undefined,
         technicalCategory:undefined
@@ -163,7 +164,7 @@ function showUpd(arr){
 	let count = 0;
 
     arr[0].forEach((field, i)=>{
-			if(i==0 ||i==1 ||i==2 ||i==3 ||i==4 || i==16 || i==17 ||i==18){
+			if(i==0 ||i==1 ||i==2 ||i==3 ||i==4 ||i==5 || i==16 || i==17 ||i==18){
                 obj[keys[count]] = field;
                 count++
 			}

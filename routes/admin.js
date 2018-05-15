@@ -129,6 +129,19 @@ router.get('/users/:id', isAdmin, (req,res, next)=>{
     .catch(e=>next(e));
 });
 
+router.post('/users/:id', isAdmin, (req,res, next)=>{
+    if(req.body.eliminar){
+        User.findByIdAndUpdate(req.params.id,  {$unset: { selectedCourse: 1, status:1 }})
+        .then(user=>{
+            res.redirect('/admin/users/');
+        })
+        .catch(e=>next(e))
+    }else{
+        res.redirect('/admin/users/');
+    }
+    
+})
+
 router.post('/users', isAdmin, (req,res,next)=>{
     const field = req.body.search;
     query = {$or:[

@@ -58,7 +58,10 @@
 
 
         <p>{{user.selectedCourse.kind}} {{user.selectedCourse.type}} => {{date user.selectedCourse.date}}</p>
-
+        <form id="eliminar" action="/admin/users/{{user._id}}" method="post">
+            <input name="eliminar" value="true" type="text" hidden>
+            <input class="uk-button uk-button-danger" type="submit" value="Eliminar Curso" />
+        </form>
 
     <h3 class="uk-margin-large-top">Comprobante de pago:</h3>
         <div uk-lightbox>
@@ -128,3 +131,15 @@
 
     </div>
 </div>
+
+<script>
+
+    var form = document.getElementById('eliminar');
+    form.addEventListener('submit', function(e){
+        e.preventDefault();
+        if(confirm('Seguro que deceas eliminar el curso?')){
+            form.submit();
+        }
+    });
+
+</script>

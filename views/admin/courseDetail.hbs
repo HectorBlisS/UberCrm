@@ -11,9 +11,11 @@
 <a class="uk-button uk-button-primary" href="/admin/courses" uk-toggle>Cancelar</a>
 
 
-<div class="uk-overflow-auto">
+<article class="bliss-flex">
 
-<form class="uk-card uk-card-body uk-width-1-2@m" action="/admin/courses/{{course._id}}" method="post" >
+<div class="uk-overflow-auto"> {{!--  --}}
+
+<form class="uk-card uk-card-body" action="/admin/courses/{{course._id}}" method="post" >
     <fieldset class="uk-fieldset">
 
         <legend class="uk-legend">Editar Curso</legend>
@@ -22,12 +24,16 @@
             <h4>Fecha de inicio</h4>
              <input value="{{course.fecha}}" name="date" type="date" >
         </div>
+        <div class="uk-margin">
+            <h4>Fecha de Finalización</h4>
+             <input value="{{course.endFecha}}" name="endDate" type="date" >
+        </div>
 
         <div class="uk-margin">
             <h4>Curso </h4>
             <select name="kind" class="uk-select">
                 <option selected value="{{course.kind}}">{{course.kind}}</option>
-                <option value="Web Development">Web Dev</option>
+                <option value="Web Dev">Web Dev</option>
                 <option value="UX/UI">UX/UI</option>
             </select>
         </div>
@@ -40,6 +46,10 @@
                 <option value="Part-time">Part-time</option>
             </select>
         </div>
+        <div class="uk-margin">
+            <h4>Lugares</h4>
+            <input value="{{course.totalPlaces}}" type="number" max="25" name="totalPlaces" class="uk-input"/>
+        </div>
         <br>
         <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
             <label><input {{#if course.active}} checked {{/if}} name="active" class="uk-checkbox" type="checkbox">Activo</label>
@@ -49,7 +59,41 @@
     <input value="Actualizar" type="submit" class="uk-button uk-button-danger">
 </form>
 
+</div>{{!--  forms --}}
+
+{{!-- alumni --}}
+<div>
+    <h3>Apartados: {{course.totalEnrolled}}</h3>
+
+<article style="display:flex;flex-wrap:wrap" >
+            {{#each course.enrolled}}
+
+
+            <div class="uk-card uk-card-default uk-width-1-4@m" style="margin:5px">
+                <div class="uk-card-header">
+                    <div class="uk-grid-small" uk-grid>
+                        <div class="uk-width-auto">
+                            <img class="uk-border-circle" width="40" height="40" src="https://cdn-images-1.medium.com/max/1200/0*jp3IFb08Sy3_k3N_.">
+                        </div>
+                        <div class="uk-width-expand">
+                            <a href="/admin/users/{{this._id}}">
+                            <span uk-tooltip="{{this.username}}" class="uk-card-title uk-margin-remove-bottom">{{this.app.name}} {{this.app.surName}}</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            
+        
+            {{/each}}
+</article>
+
+
 </div>
+
+</article>
 
 </section>
 

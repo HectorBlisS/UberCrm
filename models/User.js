@@ -6,6 +6,7 @@ const mongooseToCsv = require('mongoose-to-csv');
 
 
 const userSchema = new Schema({
+
     active:{
         type:Boolean,
         default:true
@@ -35,7 +36,7 @@ const userSchema = new Schema({
     paymentPic:String,
     status:{
         type:String,
-        enum:["PENDING", "SENT", "ENROLLED"],
+        enum:["PENDING", "SENT", "ACCEPTED"],
         default:"PENDING"
     }
 

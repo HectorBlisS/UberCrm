@@ -58,9 +58,9 @@ router.get('/profile', isAuthenticated, (req,res, next)=>{
                 user.color = "yellow"
                 user.estado = "Deposito en revisión";
                 break;
-            case('ENROLLED'):
+            case('ACCEPTED'):
                 user.color = "green"
-                user.estado = "Inscrito";
+                user.estado = "Estas Inscrit@";
                 break;
             default:
             console.log("chet")

@@ -10,15 +10,68 @@
 </a>
 <a class="uk-button uk-button-primary" href="/admin/users" uk-toggle>Cancelar</a>
 
+<br><br>
 
-<div class="uk-overflow-auto">
-    <h2>Visualizar Pago</h2>
-    <h5>{{user.email}}</h5>
-    <div uk-lightbox>
+<div class="uk-overflow-auto uk-container" >
+    <h3>Detalle de Usuario</h3>
+
+
+    <article class="uk-comment uk-comment-primary">
+    <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
+        <div class="uk-width-auto">
+            {{#if this.photoURL}}
+            <img class="uk-comment-avatar" src="{{this.photoURL}}" width="80" height="80" alt="">
+            {{else}}
+            <img class="uk-comment-avatar" src="https://cdn-images-1.medium.com/max/184/1*2GDcaeYIx_bQAZLxWM4PsQ@2x.png" width="80" height="80" alt="">
+            {{/if}}
+
+        </div>
+        <div class="uk-width-expand">
+            <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">{{user.app.name}} {{user.app.surName}}</a></h4>
+            <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
+                <li><a href="#">Score: <strong style="color:black">{{user.app.interview_score}}</strong> </a></li>
+                <li><a href="mailto:{{user.email}}">
+                        {{user.email}}
+                    </a>
+                </li>
+                <li>
+                    <span class="uk-text-danger">{{user.status}}</span>
+                </li>
+                <li>
+                    <a href="/admin/users/{{user._id}}/?accepted=true" class="uk-button uk-button-primary uk-text-success">
+	                    Aceptar Comprobante
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div class="uk-comment-body">
+        <p>{{user.selectedCourse.kind}} {{user.selectedCourse.type}} => {{date user.selectedCourse.date}}</p>
+
+        <br>
+
+    <h3>Comprobante de pago:</h3>
+        <div uk-lightbox>
         <a class="uk-button uk-button-default" href="{{user.paymentPic}}">
             <img width="100" src="{{user.paymentPic}}" alt="">
         </a>
     </div>
+
+
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
 
 </section>

@@ -81,18 +81,35 @@
 
             {{else}}
 
-            <h3>Recuerda que solo tienes 5 días para reservarlo </h3>
+        <p style="Margin-top: 16px;Margin-bottom: 20px;">
+
+            Ahora que sabes que es lo que quieres aprender y cuando, solo falta un paso para que tu lugar
+            quede reservado.
+            <br>
+            Debes realizar un depósito o transferencia a la cuenta bancaria de Ironhack. Subir la foto de tu recibo bancario. Recuerda que el cupo
+            en los grupos es <strong>limitado</strong>. ¡Apresurate!
+            <br>
+            <br>
+            <u>DATOS BANCARIOS:</u>
+            <br>
+            <br>
+            IRONHACK MEXICO SC
+            <br>
+            <strong>Clave Interbancaria (para transferencia electrónica):</strong>
+            <br>
+            014180655064530602
+            <br>
+            <strong>Clave Santander (para depositos en ventanilla):</strong>
+            <br>
+            65506453060
+            <br>
+            <strong>SWIFT (para transferencias internacionales):</strong>
+            <br>
+            BMSXMXMMXXX
+        </p>
 
             <p>
-                Solo tienes que realizar un deposito por $9,000.MXN a la cuenta de Ironhack México en Santander.
-            </p>
-
-            <h5>
-                Datos de la cuenta...
-            </h5>
-
-            <p>
-                Tomar una foto de tu recibo de pago y subirlo aqui:
+                Toma una foto de tu recibo de pago o captura de pantalla y subelo aqui:
             </p>
             <form action="/reserva" method="post" enctype="multipart/form-data">
                 <input name="file" accept="image/*" class="uk-input-file" type="file">
@@ -108,9 +125,9 @@
 
         </div>
 
-        <div class="uk-modal-footer uk-text-right">
+        {{!-- <div class="uk-modal-footer uk-text-right">
             <button class="uk-button uk-button-secondary uk-modal-close" type="button">Cerrar</button>
-        </div>
+        </div> --}}
 
     </div>
 </div>

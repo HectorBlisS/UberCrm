@@ -49,10 +49,11 @@
 
         {{#if hayLugar}}
 
-            <p>Lugares disponibles: <span>No disponibles</span></p>
+            <p>Lugares Ocupados: {{user.selectedCourse.enrolled.length}}/{{user.selectedCourse.totalPlaces}}</p>
 
         {{else}}
-            <p>Lugares Ocupados: {{user.selectedCourse.enrolled.length}}/{{user.selectedCourse.totalPlaces}}</p>
+
+            <p>Lugares disponibles: <span>No disponibles</span></p>
 
         {{/if}}
 

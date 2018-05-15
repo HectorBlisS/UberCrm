@@ -12,7 +12,7 @@ let transporter = nodemailer.createTransport({
 const accountCreated = hbs.compile(fs.readFileSync((__dirname, './views/mail/accountCreated.hbs'), 'utf8'));
 const courseSelected = hbs.compile(fs.readFileSync((__dirname, './views/mail/courseSelected.hbs'), 'utf8'));
 const payUploaded = hbs.compile(fs.readFileSync((__dirname, './views/mail/payUploaded.hbs'), 'utf8'));
-const inscritoCongrats = hbs.compile(fs.readFileSync((__dirname, './views/mail/inscrito.hbs'), 'utf8'));
+const inscritoCongrats = hbs.compile(fs.readFileSync((__dirname, './views/mail/templateInscrito.hbs'), 'utf8'));
 
 
 exports.accountCreatedMail = function(to,subject,text,name){

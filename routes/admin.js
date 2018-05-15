@@ -5,6 +5,7 @@ const moment = require('moment');
 const fs = require('fs');
 const path = require('path');
 const App = require('../models/Application');
+const inscrito = require('../helpers/mailer').inscrito;
 var csv = require('csv-express')
 
 
@@ -116,6 +117,9 @@ router.get('/users/:id', isAdmin, (req,res, next)=>{
     .populate('app')
     .populate('selectedCourse')
     .then(user=>{
+        if(req.query.accepted){
+            inscrito(user.email, "Estas inscrito!", "estas inscrito", user.app.name); //envio felicitacion
+        }
 //        console.log(user);
         res.render('admin/userDetail', {user});
     })

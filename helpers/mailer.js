@@ -12,6 +12,7 @@ let transporter = nodemailer.createTransport({
 const accountCreated = hbs.compile(fs.readFileSync((__dirname, './views/mail/accountCreated.hbs'), 'utf8'));
 const courseSelected = hbs.compile(fs.readFileSync((__dirname, './views/mail/courseSelected.hbs'), 'utf8'));
 const payUploaded = hbs.compile(fs.readFileSync((__dirname, './views/mail/payUploaded.hbs'), 'utf8'));
+const inscritoCongrats = hbs.compile(fs.readFileSync((__dirname, './views/mail/inscrito.hbs'), 'utf8'));
 
 
 exports.accountCreatedMail = function(to,subject,text,name){
@@ -71,6 +72,21 @@ exports.notifyAdmin = function(user){
             <p>Revisa el comprobante <a href="https://uber.ironhack.com.mx/admin/users/${user._id}">aquí</a></p>
         `
 });
+}
+
+exports.inscrito = function(to,subject,text,name){
+    return transporter.sendMail({
+        from: '"🚗UBER + Ironhack 💻" <contactomex@ironhack.com>',
+        to, 
+        subject, 
+        text,
+        html: inscritoCongrats({name})
+        // html: `
+        // <strong>${text}</strong>
+        // <p>Da click aqui para revisar los detalles:<a href="https://ubercrm.herokuapp.com/auth/profile"> Ir a mi perfil  </a>  </p>
+        // `
+      })
+      //.then(info => res.render('message', {email, subject, message, info}))
 }
 
 

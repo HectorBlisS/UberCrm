@@ -22,10 +22,11 @@ Descargar en CSV
     <span uk-search-icon></span>
     <input name="search" class="uk-search-input" type="search" placeholder="Buscale...">
 </form>
-
+<h3>Usuarios:</h3>
+<h4> Creados: {{total}} -- Seleccionaron: {{choosen}} -- Pagaron:{{paid}}</h3>
 
 {{!-- Paginacion --}}
-<ul class="uk-pagination uk-flex-right" uk-margin>
+{{!-- <ul class="uk-pagination uk-flex-right" uk-margin>
     <li><a href="/admin/users?page={{dec result.page}}&pages={{result.pages}}"><span uk-pagination-previous></span></a></li>
     <li><a href="/admin/users?page=1">1</a></li>
     <li class="uk-disabled"><span>...</span></li>
@@ -35,7 +36,7 @@ Descargar en CSV
     <li class="uk-disabled"><span>...</span></li>
     <li><a href="/admin/users?page={{result.pages}}">{{result.pages}}</a></li>
     <li><a href="/admin/users?page={{inc result.page}}&pages={{result.pages}}"><span uk-pagination-next></span></a></li>
-</ul>
+</ul> --}}
 {{!-- Paginacion --}}
 
 
@@ -79,7 +80,7 @@ Descargar en CSV
 </div>
 
 {{!-- Paginacion --}}
-<ul class="uk-pagination uk-flex-right" uk-margin>
+{{!-- <ul class="uk-pagination uk-flex-right" uk-margin>
     <li><a href="/admin/users?page={{dec result.page}}&pages={{result.pages}}"><span uk-pagination-previous></span></a></li>
     <li><a href="/admin/users?page=1">1</a></li>
     <li class="uk-disabled"><span>...</span></li>
@@ -89,7 +90,7 @@ Descargar en CSV
     <li class="uk-disabled"><span>...</span></li>
     <li><a href="/admin/users?page={{result.pages}}">{{result.pages}}</a></li>
     <li><a href="/admin/users?page={{inc result.page}}&pages={{result.pages}}"><span uk-pagination-next></span></a></li>
-</ul>
+</ul> --}}
 {{!-- Paginacion --}}
 
 </section>

@@ -157,9 +157,15 @@ router.get('/users', isAdmin, (req,res,next)=>{
 	}
     options["limit"] = Number(10);
     options['populate'] = ['app', 'selectedCourse'];
-    User.paginate(query,options)
+    //User.paginate(query,options)
+    User.find(query).populate('app').populate('selectedCourse')
     .then(result=>{
-        res.render('admin/users', {users:result.docs,result});
+        Promise.all([User.find(query).count(), User.find({selectedCourse:{$exists:true}}).count(), User.find({status:'SENT'}).count()])
+        .then(results=>{
+            res.render('admin/users', {users:result, total:results[0], choosen:results[1], paid:results[2]})
+        })
+        //res.render('admin/users', {users:result.docs,result});
+        
     })
     .catch(e=>next(e));
 });

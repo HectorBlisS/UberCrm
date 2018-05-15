@@ -20,9 +20,14 @@ hbs.registerHelper('date', (content)=>moment(content).format("LL"));
 hbs.registerHelper('fromNow', (content)=>moment(content).fromNow());
 hbs.registerHelper('inc', (content)=>Number(content)+1);
 hbs.registerHelper('dec', (content)=>Number(content)-1);
+hbs.registerHelper('compare', (item1, item2, options) => {
+  if (item1 >= item2){
+    return options.fn(this);
+  }else{
+    return options.inverse(this);
+  }
+});
 
-
-//helpers
 
 
 var app = express();

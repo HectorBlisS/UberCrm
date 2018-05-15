@@ -112,19 +112,22 @@ router.get('/users/:id', isAdmin, (req,res, next)=>{
     } else{
         promise = User.findById(req.params.id);
     }
+
     
     promise
     .populate('app')
     .populate('selectedCourse')
     .then(user=>{
+        const hayLugar = user.selectedCourse.enrolled.length <= user.selectedCourse.totalPlaces;
+
         if(req.query.accepted){
             inscrito(user.email, "Estas inscrito!", "estas inscrito", user.app.name); //envio felicitacion
         }
 //        console.log(user);
-        res.render('admin/userDetail', {user});
+        res.render('admin/userDetail', {user, hayLugar});
     })
     .catch(e=>next(e));
-})
+});
 
 router.post('/users', isAdmin, (req,res,next)=>{
     const field = req.body.search;

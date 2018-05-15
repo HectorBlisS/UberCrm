@@ -29,11 +29,14 @@ router.post('/reserva', uploads, (req,res,next)=>{
   // })
   // .then(r=>console.log(r)) //aqui ando!!!
   //.catch(e=>next(e));
-  Course.findByIdAndUpdate(req.user.selectedCourse, {$push:{enrolled:req.user._id}})
-  User.findByIdAndUpdate(req.user._id,req.user)
-  .populate('app')
+    Course.findByIdAndUpdate(req.user.selectedCourse, {$push:{enrolled:req.user._id}}, {new:true})
+        .then(course=>{
+          console.log(course);
+          return User.findByIdAndUpdate(req.user._id, req.user)
+        })
+
+
   .then(user=>{
-    //email
     payUploaded(user.email, "Estamos revisando tu pago", "Maravilloso, estas a solo unas horas de ser un Ironhacker, solo debemos revisar tu comporbante de pago y nos comunicaremos contigo para felicitarte por ser parte! =D", user.app.name)
     notifyAdmin(user);
     //email

@@ -147,11 +147,15 @@ function show(arr){
 }
 
 function showUpd(arr){
+
+	console.log("webdev");
 	const obj={
 		name: undefined,
 		lastName: undefined,
 		surName: undefined,
 		email:undefined,
+		kindOfUser: undefined,
+        gender: undefined,
 		whyTo:undefined,
 		webScore:undefined,
         technicalCategory:undefined
@@ -160,7 +164,7 @@ function showUpd(arr){
 	let count = 0;
 
     arr[0].forEach((field, i)=>{
-			if(i==0 ||i==1 ||i==2 ||i==3 || i==16 || i==17 ||i==18){
+			if(i==0 ||i==1 ||i==2 ||i==3 ||i==4 ||i==5 || i==16 || i==17 ||i==18){
                 obj[keys[count]] = field;
                 count++
 			}
@@ -170,11 +174,13 @@ function showUpd(arr){
 
 }
 function showUxUpdate(arr){
+	console.log("ux/ui");
     const obj={
 		name: undefined,
 		lastName: undefined,
 		surName: undefined,
-        email:undefined,
+		email:undefined,
+		kindOfUser: undefined,
         whyTo:undefined,
         uxScore:undefined,
         technicalCategory:undefined
@@ -183,7 +189,7 @@ function showUxUpdate(arr){
     let count = 0;
 
     arr[0].forEach((field, i)=>{
-        if(i==0 ||i==1 ||i==2 || i==3 || i==14 || i==15 ||i==19){
+        if(i==0 ||i==1 ||i==2 || i==3 || i==4 || i==14 || i==15 ||i==16){
         obj[keys[count]] = field;
         count++
     }

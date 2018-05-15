@@ -38,19 +38,29 @@
                     <span class="uk-text-danger">{{user.status}}</span>
                 </li>
                 <li>
-                    <a href="/admin/users/{{user._id}}/?accepted=true" class="uk-button uk-button-primary uk-text-success">
+                    <button class="uk-button uk-button-primary" onclick="confirmUser()" id="aproveUser">
 	                    Aceptar Comprobante
-                    </a>
+                    </button>
                 </li>
             </ul>
         </div>
     </header>
     <div class="uk-comment-body">
+
+        {{#if hayLugar}}
+
+            <p>Lugares disponibles: <span>No disponibles</span></p>
+
+        {{else}}
+            <p>Lugares Ocupados: {{user.selectedCourse.enrolled.length}}/{{user.selectedCourse.totalPlaces}}</p>
+
+        {{/if}}
+
+
         <p>{{user.selectedCourse.kind}} {{user.selectedCourse.type}} => {{date user.selectedCourse.date}}</p>
 
-        <br>
 
-    <h3>Comprobante de pago:</h3>
+    <h3 class="uk-margin-large-top">Comprobante de pago:</h3>
         <div uk-lightbox>
         <a class="uk-button uk-button-default" href="{{user.paymentPic}}">
             <img width="100" src="{{user.paymentPic}}" alt="">
@@ -60,6 +70,29 @@
 
     </div>
 </article>
+
+    <style>
+        #aproveUser{
+            color: #fff;
+        }
+        #aproveUser:disabled{
+            background-color: transparent;
+            color: #999;
+            border-color: #e5e5e5;
+        }
+    </style>
+
+<script>
+
+    var result = {{{user.selectedCourse.totalPlaces}}} - {{{user.selectedCourse.enrolled.length}}}
+
+    if( result <= 0) document.getElementById('aproveUser').disabled = true;
+
+    function confirmUser(){
+        window.location.replace("/admin/users/{{{user._id}}}/?accepted=true");
+    }
+
+</script>
 
 
 

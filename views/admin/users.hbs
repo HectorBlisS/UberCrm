@@ -1,0 +1,144 @@
+<section class="uk-container">
+
+<h2>Admin Panel</h2>
+
+<a href="/admin/apps" class="uk-button uk-button-secondary">
+	Apps
+</a>
+
+<a href="/admin/courses" class="uk-button uk-button-secondary">
+	Cursos
+</a>
+<a href="/admin/users" class="uk-button uk-button-secondary">
+	Usuarios
+</a>
+<a class="uk-button uk-button-primary" href="/admin/users/export" uk-toggle>
+<span class="uk-margin-small-right" uk-icon="move"></span>
+Descargar en CSV
+</a>
+{{!-- search --}}
+
+<form action="/admin/users" method="post" class="uk-search uk-search-large">
+    <span uk-search-icon></span>
+    <input name="search" class="uk-search-input" type="search" placeholder="Buscale...">
+</form>
+
+
+{{!-- Paginacion --}}
+<ul class="uk-pagination uk-flex-right" uk-margin>
+    <li><a href="/admin/users?page={{dec result.page}}&pages={{result.pages}}"><span uk-pagination-previous></span></a></li>
+    <li><a href="/admin/users?page=1">1</a></li>
+    <li class="uk-disabled"><span>...</span></li>
+    <li><a href="/admin/users?page={{dec result.page}}">{{dec result.page}}</a></li>
+    <li class="uk-active"><span>{{result.page}}</span></li>
+    <li><a href="/admin/users?page={{inc result.page}}">{{inc result.page}}</a></li>
+    <li class="uk-disabled"><span>...</span></li>
+    <li><a href="/admin/users?page={{result.pages}}">{{result.pages}}</a></li>
+    <li><a href="/admin/users?page={{inc result.page}}&pages={{result.pages}}"><span uk-pagination-next></span></a></li>
+</ul>
+{{!-- Paginacion --}}
+
+
+<div class="uk-overflow-auto">
+    <table class="uk-table uk-table-hover uk-table-middle uk-table-divider">
+        <thead>
+            <tr>
+                <th class="uk-table-shrink">Select</th>
+                <th class="uk-table-shrink">Img</th>
+                <th class="uk-table-expand">Nombre</th>
+                <th class="uk-width-small">E-mail</th>
+                <th class="uk-table-shrink uk-text-nowrap">Curso seleccionado</th>
+                <th class="uk-table-shrink uk-text-nowrap">Estatus</th>
+            </tr>
+        </thead>
+        <tbody id="tBody">
+            {{#each users}}
+            <tr>
+                <td><input class="uk-checkbox" type="checkbox"></td>
+                <td><img class="uk-preserve-width uk-border-circle" src="https://www.ironhack.com/assets/shared/logo.svg" width="40" alt=""></td>
+                <td class="uk-table-truncate">
+                    <a class="uk-link-reset" href="/admin/users/{{this._id}}">
+                        {{this.app.name}} {{this.app.surName}} {{this.app.lastName}}
+                    </a>
+                </td>
+                <td class="uk-table-truncate">{{this.email}}</td>
+                <td class="uk-text-primary uk-text-nowrap">{{this.selectedCourse.kind}} - {{date this.selectedCourse.date}}</td>
+                <td class="uk-text-danger uk-text-nowrap">{{this.status}}</td>
+            </tr>
+            {{else}}
+            <tr>
+                <td>
+                    <h2>
+                        No hay resultados
+                    </h2>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+{{!-- Paginacion --}}
+<ul class="uk-pagination uk-flex-right" uk-margin>
+    <li><a href="/admin/users?page={{dec result.page}}&pages={{result.pages}}"><span uk-pagination-previous></span></a></li>
+    <li><a href="/admin/users?page=1">1</a></li>
+    <li class="uk-disabled"><span>...</span></li>
+    <li><a href="/admin/users?page={{dec result.page}}">{{dec result.page}}</a></li>
+    <li class="uk-active"><span>{{result.page}}</span></li>
+    <li><a href="/admin/users?page={{inc result.page}}">{{inc result.page}}</a></li>
+    <li class="uk-disabled"><span>...</span></li>
+    <li><a href="/admin/users?page={{result.pages}}">{{result.pages}}</a></li>
+    <li><a href="/admin/users?page={{inc result.page}}&pages={{result.pages}}"><span uk-pagination-next></span></a></li>
+</ul>
+{{!-- Paginacion --}}
+
+</section>
+
+
+
+
+
+
+<div id="modal-center" class="uk-flex-top" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+
+       
+
+ <form action="/admin/courses" method="post" >
+    <fieldset class="uk-fieldset">
+
+        <legend class="uk-legend">Nuevo Usuario</legend>
+
+        {{!-- <div class="uk-margin">
+            <h4>Fecha de inicio</h4>
+             <input name="date" type="date" data-uk-datepicker="{format:'DD.MM.YYYY'}">
+        </div>
+
+        <div class="uk-margin">
+            <h4>Curso</h4>
+            <select name="kind" class="uk-select">
+                <option value="Web Development">Web Dev</option>
+                <option value="UX/UI">UX/UI</option>
+            </select>
+        </div>
+        
+        <div class="uk-margin">
+            <h4>Tipo</h4>
+            <select name="type" class="uk-select">
+                <option value="Full-time">Full-time</option>
+                <option value="Part-time">Part-time</option>
+            </select>
+        </div> --}}
+
+    </fieldset>
+    {{!-- <input value="Crear" type="submit" class="uk-button uk-button-danger"> --}}
+</form>
+
+
+
+
+    </div>
+</div>
+

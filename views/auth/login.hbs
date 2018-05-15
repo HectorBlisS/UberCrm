@@ -1,0 +1,20 @@
+<section class="uk-container uk-container-small">
+
+<h2 class="uk-flex uk-flex-center">Inicia sesión</h2>
+<hr>
+<article class="uk-flex uk-flex-center uk-text-center">
+
+
+<form class="uk-card uk-width-1-2@m" validated action="/auth/login" method="post">
+    <input name="email" required class="uk-input" type="email" placeholder="Tu email"/>
+<br>
+    <input required class="uk-input" type="password" name="password" placeholder="tu password" />
+    <br><br>
+    <input class="uk-button uk-button-secondary" type="submit" class="">
+</form>
+
+
+</article>
+<h6 class="error">{{error}}</h6>
+
+</section>

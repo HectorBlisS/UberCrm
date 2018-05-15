@@ -1,0 +1,20 @@
+<section class="uk-container uk-container-small">
+
+
+
+<h2>Hola confirma tu correo electrónico</h2>
+<article class="uk-flex uk-flex-center">
+<form class="uk-flex uk-card uk-width-1-2@m uk-text-center" validated action="/auth/confirm" method="post">
+    
+    {{#if error}}
+    <input class="uk-input uk-form-danger" required type="email" name="email" placeholder="{{error}}" />
+    {{else}}
+    <input class="uk-input" required type="email" name="email" placeholder="Tu correo electrónico" />
+    {{/if}}
+    <br><br>
+    <input class="uk-button uk-button-primary" type="submit" value="confirmar emial" />
+</form>
+
+</article>
+
+</section> 

@@ -1,0 +1,65 @@
+<section class="uk-container" style="text-align:center">
+
+
+<h2>Selecciona el curso al que prefieres ingresar</h2>
+
+    <div class="uk-margin-medium uk-flex uk-flex-right">
+        <button id="submit" class="uk-button uk-button-primary">Confirmar</button>
+    </div>
+
+<article class="uk-container uk-flex uk-flex-wrap">
+
+{{#each courses}}
+<div data-id="{{this._id}}" class=" {{#unless available}}disabled{{/unless}} selectable uk-card uk-card-default uk-card-body uk-width-1-2@m">
+    <h3 class="uk-card-title">{{this.kind}} {{this.type}}</h3>
+    <p><b>Inicia:</b> <strong class="uk-text-success">{{date this.date}}</strong></p>
+    <p> <b>Termina:</b>  {{date this.endDate}}</p>
+    <p> <b>Lugares:</b>  {{this.totalEnrolled}} Ocupados de {{this.totalPlaces}}</p>
+    {{#unless available}}
+    <span class="uk-label uk-label-danger">Grupo Lleno</span>
+    {{else}}
+    <span class="uk-label uk-label-primary">Disponible</span>
+    {{/unless}}
+
+</div>
+{{/each}}
+
+</article>
+<br>
+<br>
+<br>
+<button id="submit" class="uk-button uk-button-primary">Confirmar</button>
+
+</section>
+
+<form action="/select" method="post">
+    <input id="courseId" name="courseId" hidden type="text">
+    <br><br>
+</form>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    let courseId;
+
+    $('.selectable').click(function(){
+        //console.log('click')
+        $('.selectable').removeClass('uk-card-primary selected');
+        $(this).addClass('uk-card-primary selected')
+        courseId = $(this).data('id');
+        $('#courseId').val(courseId);
+    })
+
+    $('#submit').click(function(){
+        if(!courseId) return alert("Debes seleccionar un curso");
+        if(confirm("Esta selección no es modificable, has seleccionado el curso correcto?")){
+            $('form').submit()
+        }
+        
+    });
+
+
+
+</script>

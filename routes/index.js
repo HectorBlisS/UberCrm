@@ -31,7 +31,7 @@ router.get('/filter', appController.filter);
  ***/
 
 	router.get('/finalinterview', appController.finalCandidatesFiltered);
-	router.patch('/finalinterview/:id', appController.editFinalist)
+	router.patch('/finalinterview/:id', appController.editFinalist);
 
 /*** 
  * RUTAS DE DAVID

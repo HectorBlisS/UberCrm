@@ -1,3 +1,40 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div class="uk-cover-container video">
 
+    
+
+    <video autoplay loop muted playsinline uk-cover>
+        <source src="http://res.cloudinary.com/hectorbliss/video/upload/v1525643155/iron.mp4" type="video/mp4">
+    </video>
+
+    {{!-- <div class="cover"></div> --}}
+
+    {{!-- <span id="mute" uk-icon="icon: bell; ratio: 3.5"></span> --}}
+    <i id="mute" class="fa fa-volume-off"></i>
+
+
+
+
+    <a href="/auth/confirm" id="call-to-action" class="uk-button uk-button-primary">
+        Confirmar Beca
+    </a>
+
+</div>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script>
+
+    $('#mute').click(function(){
+        if( $('video').prop('muted')) {
+            $('video').prop('muted', false);
+            $(this).toggleClass('fa-volume-up fa-volume-off');
+        }else{
+            $('video').prop('muted', true);
+            $(this).toggleClass('fa-volume-up fa-volume-off');
+        }
+    });
+
+</script>

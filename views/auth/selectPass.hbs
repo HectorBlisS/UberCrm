@@ -1,0 +1,23 @@
+<section class="uk-container uk-container-small">
+
+<h2>Selecciona una contraseña para tu usuario</h2>
+
+
+<article class="uk-flex uk-flex-center">
+
+<form class="uk-card uk-width-1-2@m" validated action="/auth/confirm/{{appId}}" method="post">
+<h3>email: {{email}}</h3>
+
+    <input class="uk-input" type="password" name="password" placeholder="Tu password" />
+    <input class="uk-input" type="password" name="password2" placeholder="Repite tu password" />
+    <br><br>
+    <input class="uk-button uk-button-primary" type="submit" value="Crear Cuenta" />
+</form>
+{{#if error}} <h6 class="error">{{error}}</h6> {{/if}}
+
+
+</article>
+
+
+
+</section> 

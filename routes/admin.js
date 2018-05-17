@@ -171,7 +171,7 @@ router.get('/users', isAdmin, (req,res,next)=>{
     options["limit"] = Number(10);
     options['populate'] = ['app', 'selectedCourse'];
     //User.paginate(query,options)
-    User.find(query).populate('app').populate('selectedCourse')
+    User.find(query).populate('app').populate('selectedCourse').sort('-created_at')
     .then(result=>{
         Promise.all([User.find(query).count(), User.find({selectedCourse:{$exists:true}}).count(), User.find({status:'SENT'}).count()])
         .then(results=>{

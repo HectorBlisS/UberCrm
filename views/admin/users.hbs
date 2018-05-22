@@ -48,6 +48,7 @@ Descargar en CSV
                 <th class="uk-table-shrink">Img</th>
                 <th class="uk-table-expand">Nombre</th>
                 <th class="uk-width-small">E-mail</th>
+                <th class="uk-with-small"> Teléfono </th>
                 <th class="uk-table-shrink uk-text-nowrap">Curso seleccionado</th>
                 <th class="uk-table-shrink uk-text-nowrap">Estatus</th>
             </tr>
@@ -63,6 +64,7 @@ Descargar en CSV
                     </a>
                 </td>
                 <td class="uk-table-truncate">{{this.email}}</td>
+                <td class="uk-table-truncate">{{this.app.tel}}</td>
                 <td class="uk-text-primary uk-text-nowrap">{{this.selectedCourse.kind}} - {{date this.selectedCourse.date}}</td>
                 <td class="uk-text-danger uk-text-nowrap">{{this.status}}</td>
             </tr>
